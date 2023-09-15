@@ -1,0 +1,265 @@
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 500px;
+  position: relative;
+  padding: 20px;
+  text-align: center;
+}
+
+.corner-top-left {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-top: 2px solid #000;
+  border-left: 2px solid #000;
+  animation: corner-top 2s ease-in-out 0.5s forwards;
+}
+
+.corner-bottom-right {
+  content: "";
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%);
+  width: 40px;
+  height: 40px;
+  border-bottom: 2px solid #000;
+  border-right: 2px solid #000;
+  animation: corner-bot 2s ease-in-out 0.5s forwards;
+}
+
+@keyframes corner-top {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    top: -10px;
+    left: -10px;
+    transform: translate(0);
+  }
+}
+
+@keyframes corner-bot {
+  0% {
+    bottom: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
+  }
+  100% {
+    bottom: -10px;
+    right: -10px;
+    transform: translate(0);
+  }
+}
+
+h1, p {
+  text-align: center;
+  opacity: 0;
+}
+
+.animate-heading {
+  animation: fade-in 1s ease-in-out 0.5s forwards;
+}
+
+.animate-text {
+  animation: fade-in 1s ease-in-out 1s forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+h1 span.highlight {
+  font-weight: bold;
+  color: rgb(84, 156, 214);
+}
+
+p span.highlight {
+  color: rgb(107, 191, 219);
+}
+
+.error {
+  color: red; /* Customize the color for the spelling error */
+  font-weight: bold; /* Make the spelling error bold */
+  /* Add any additional styling as desired */
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 24px; /* Updated height */
+  background-color: #000;
+  margin-left: 4px;
+  animation: blink-caret 1.0s infinite;
+}
+
+@keyframes blink-caret {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ...existing CSS... */
+
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #333333;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#buttons {
+  display: inline-block;
+}
+
+.button:hover {
+  background-color: #ffffff98;
+}
+
+.button:focus {
+  outline: none;
+}
+
+
+.animate-buttons {
+  opacity: 0;
+  margin-top: 20px;
+  animation: fade-in 3s ease-in-out 2s forwards;
+}
+
+#content-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+#content-container .custom-p {
+  margin: 10px 0;
+  color: #ff0000;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-text {
+  display: inline-block;
+  padding: 5px 10px;
+  padding-right: 50%;
+  background-color: #f0f0f0;
+  color: rgb(34, 59, 80);
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  border-radius: 4px;
+  text-align: left;
+  letter-spacing: 1px;
+  line-height: 2;
+  /* Add any additional styles as desired */
+}
+
+.portfolio-text {
+  display: inline-block;
+  padding: 5px 10px;
+  padding-right: 50%;
+  background-color: #f0f0f0;
+  color: rgb(34, 59, 80);
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  border-radius: 4px;
+  text-align: left;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  /* Add any additional styles as desired */
+}
+
+.about1-text {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  color: rgb(34, 59, 80);
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  border-radius: 4px;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  /* Add any additional styles as desired */
+}
+
+.about-text {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #f0f0f0;
+  color: rgb(34, 59, 80);
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  border-radius: 4px;
+  text-align: left;
+  letter-spacing: 1px;
+  /* Add any additional styles as desired */
+}
+
+
+
+
+
