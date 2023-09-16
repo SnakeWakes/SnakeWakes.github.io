@@ -50,22 +50,24 @@ function showContent(section) {
     contentContainer.innerHTML = `
       <h2>Contact Information</h2>
       <span class='contact-text'>
-
-      &#128222;  12345678912
-      <br>&#x1F4E7;  work@gmail.com
+      &#128222;  +44 7543276786
+      <br>
+      &#x2709;   coreyn1999@gmail.com
       
       </span>
     `;
   } else if (section === 'portfolio') {
     contentContainer.innerHTML = `
       <h2>Portfolio</h2>
-      <span class='portfolio-text'>Placeholder</span>
+      <span class='portfolio-text'><button class='portfolio-button'>Chatbot [120MB Datasize]</button></span>
     `;
   } else if (section === 'experience') {
     contentContainer.innerHTML = `
       <h2>About Me</h2>
-      <span class='about1-text'>Swansea University, Bsc. Computer Science<br>
-      <span class='about-text'>Experience with JavaScript, Python, Java, C#, Lua</span>
+      <span class='about1-text'>Programmer open for freelance work</span>
+      <br><br>
+      <span class='about1-text'>Swansea University Undergraduate <br>Bsc. Computer Science<br><br>
+      <span class='about-text'><strong>Experienced with:</strong> JavaScript, Python, Java, C#, Lua, Haskell, Prolog </span>
     `;
   }
 }

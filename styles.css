@@ -228,8 +228,12 @@ p span.highlight {
   border-radius: 4px;
   text-align: left;
   letter-spacing: 1px;
-  line-height: 1.2;
+  line-height: 1.5;
   /* Add any additional styles as desired */
+}
+
+.portfolio-button{
+  color: red;
 }
 
 .about1-text {
