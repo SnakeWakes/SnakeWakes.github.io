@@ -59,7 +59,14 @@ function showContent(section) {
   } else if (section === 'portfolio') {
     contentContainer.innerHTML = `
       <h2>Portfolio</h2>
-      <span class='portfolio-text'><button class='portfolio-button'>Chatbot [120MB Datasize]</button></span>
+
+      <div id="buttons">
+      <button class="button" location.href="https://github.com/SnakeWakes/chatbot">Chatbot</button>
+      <button class="button" onclick="showContent('2')">Unity 2D Game</button>
+      <button class="button" onclick="showContent('3')">Discord Bot</button> 
+    </div>
+
+
     `;
   } else if (section === 'experience') {
     contentContainer.innerHTML = `
