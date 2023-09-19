@@ -61,7 +61,7 @@ function showContent(section) {
       <h2>Portfolio</h2>
 
       <div id="buttons">
-      <button class="button" location.href="https://github.com/SnakeWakes/chatbot">Chatbot</button>
+      <a href="https://github.com/SnakeWakes/chatbot" class="button">Chatbot</a>
       <button class="button" onclick="showContent('2')">Unity 2D Game</button>
       <button class="button" onclick="showContent('3')">Discord Bot</button> 
     </div>
@@ -71,10 +71,11 @@ function showContent(section) {
   } else if (section === 'experience') {
     contentContainer.innerHTML = `
       <h2>About Me</h2>
-      <span class='about1-text'>Programmer open for freelance work</span>
+      <span class='about1-text'> I develop websites free of software but can work with any development software (e.g WordPress)<br><br>
+      Additionally able to develop/modify existing software, video games, servers and machine learning based on the languages given below.</span>
       <br><br>
       <span class='about1-text'>Swansea University Undergraduate <br>Bsc. Computer Science<br><br>
-      <span class='about-text'><strong>Experienced with:</strong> JavaScript, Python, Java, C#, Lua, Haskell, Prolog </span>
+      <span class='about-text'><strong>Experienced with:</strong> JavaScript, Python, Java, C#, Lua, Haskell, Prolog, CSS, HTML, SQL, MATLAB </span>
     `;
   }
 }
