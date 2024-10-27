@@ -63,7 +63,8 @@ function showContent(section) {
       <div id="buttons">
       <a href="https://github.com/SnakeWakes/chatbot" class="button">Chatbot</a>
       <button class="button" onclick="showContent('2')">Unity 2D Game</button>
-      <button class="button" onclick="showContent('3')">Discord Bot</button> 
+      <button class="button" onclick="showContent('3')">Discord Bot</button>
+      <a href="projects/pwEncrypt/main.html" class="button">Function Based PW Generator</a>
     </div>
 
 

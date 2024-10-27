@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username & Password Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .result {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .result div {
+            margin-bottom: 0.5rem;
+        }
+
+        .result strong {
+            color: #4a5568;
+            margin-right: 0.5rem;
+        }
+
+        .copy-btn {
+            background: #4a5568;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .strength-meter {
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+        }
+
+        .strength-meter div {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Username & Password Generator</h1>
+        
+        <div class="input-group">
+            <label for="name">Insert any word to include as prefix</label>
+            <input type="text" id="name" placeholder="Leave empty for random words">
+        </div>
+
+        <div class="input-group">
+            <label for="length">Password Length</label>
+            <input type="number" id="length" value="16" min="8" max="32">
+        </div>
+
+        <button id="generate">Generate Credentials</button>
+
+        <div class="result">
+            <div>
+                <strong>Username:</strong>
+                <span id="username"></span>
+            </div>
+            <div>
+                <strong>Password:</strong>
+                <span id="password"></span>
+            </div>
+            <div class="strength-meter">
+                <div id="strength-indicator"></div>
+            </div>
+            <button class="copy-btn" id="copy-btn">Copy to Clipboard</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            function generateUsername(name) {
+                const adjectives = ['Cool', 'Swift', 'Clever', 'Bright', 'Epic', 'Noble', 'Wise', 'Brave'];
+                const nouns = ['Phoenix', 'Dragon', 'Wolf', 'Eagle', 'Tiger', 'Lion', 'Hawk', 'Bear'];
+                const numbers = Math.floor(Math.random() * 999);
+                
+                const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+                const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+                
+                let username = '';
+                if (name) {
+                    username = name.toLowerCase().replace(/\s+/g, '') + 
+                              randomNoun + 
+                              numbers;
+                } else {
+                    username = randomAdjective + randomNoun + numbers;
+                }
+                return username;
+            }
+
+            function generatePassword(length) {
+                const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+                let password = '';
+                for (let i = 0; i < length; i++) {
+                    const randomIndex = Math.floor(Math.random() * charset.length);
+                    password += charset[randomIndex];
+                }
+                return password;
+            }
+
+            function calculatePasswordStrength(password) {
+                let strength = 0;
+                
+                if (password.length >= 12) strength += 25;
+                if (password.match(/[A-Z]/)) strength += 25;
+                if (password.match(/[a-z]/)) strength += 25;
+                if (password.match(/[0-9]/)) strength += 15;
+                if (password.match(/[^A-Za-z0-9]/)) strength += 10;
+
+                $('#strength-indicator').css({
+                    'width': strength + '%',
+                    'background-color': strength > 80 ? '#48bb78' : strength > 60 ? '#ecc94b' : '#f56565'
+                });
+
+                return strength;
+            }
+
+            function encryptPassword(password) {
+                const salt = CryptoJS.lib.WordArray.random(128/8);
+                const key = CryptoJS.PBKDF2(password, salt, {
+                    keySize: 256/32,
+                    iterations: 1000
+                });
+                return key.toString();
+            }
+
+            $('#generate').click(function() {
+                const name = $('#name').val();
+                const length = parseInt($('#length').val());
+                
+                if (length < 8 || length > 32) {
+                    alert('Password length must be between 8 and 32 characters');
+                    return;
+                }
+
+                const username = generateUsername(name);
+                const password = generatePassword(length);
+                const encryptedPassword = encryptPassword(password);
+
+                $('#username').text(username);
+                $('#password').text(password);
+                calculatePasswordStrength(password);
+                
+                $('.result').slideDown();
+            });
+
+            $('#copy-btn').click(function() {
+                const username = $('#username').text();
+                const password = $('#password').text();
+                const textToCopy = `Username: ${username}\nPassword: ${password}`;
+                
+                navigator.clipboard.writeText(textToCopy).then(function() {
+                    $(this).text('Copied!');
+                    setTimeout(() => $(this).text('Copy to Clipboard'), 2000);
+                }).catch(function() {
+                    alert('Failed to copy to clipboard');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
