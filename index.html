@@ -1,27 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Programming Portfolio</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corey Nicholas - Freelance Programmer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <div class="corner-top-left"></div>
-    <div class="corner-bottom-right"></div>
-    <h1 id="heading" class="animate-heading move-left move-up"></h1>
-    <p id="paragraph" class="animate-text move-left move-up"></p>
-    <div>
-  
-    <div id="buttons" class="animate-buttons">
-      <button class="button" onclick="showContent('contact')">Contact</button>
-      <button class="button" onclick="showContent('portfolio')">Portfolio</button>
-      <button class="button" onclick="showContent('experience')">About Me</button> 
-    </div>
-    
-    <div id="content-container"></div>
-  </div>
-  
-  <script src="script.js"></script>
+    <div class="main-container">
+        <header>
+            <nav>
+                <div class="logo">
+                    <span>CN</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" data-section="home">Home</a></li>
+                    <li><a href="#" data-section="about">About</a></li>
+                    <li><a href="#" data-section="portfolio">Portfolio</a></li>
+                    <li><a href="#" data-section="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
 
+        <main>
+            <section id="home" class="active-section">
+                <div class="hero-content">
+                    <h1 id="heading" class="animate-heading"></h1>
+                    <p id="paragraph" class="animate-text"></p>
+                    <div class="hero-cta">
+                        <a href="#portfolio" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-secondary">Hire Me</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="hidden-section">
+                <div class="section-content">
+                    <h2>About Me</h2>
+                    <div class="about-grid">
+                        <div class="about-text">
+                            <p>I'm a versatile freelance programmer specializing in web development, software modification, and game development. With a strong background in Computer Science from Swansea University, I bring a comprehensive skill set to every project.</p>
+                            <div class="skills-container">
+                                <h3>Technologies I Work With:</h3>
+                                <div class="skills-grid">
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">C#</span>
+                                    <span class="skill-tag">HTML/CSS</span>
+                                    <span class="skill-tag">SQL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-image">
+                            <img src="/placeholder-profile.jpg" alt="Corey Nicholas">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="portfolio" class="hidden-section">
+                <div class="section-content">
+                    <h2>My Projects</h2>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <img src="/chatbot-project.jpg" alt="Chatbot Project">
+                            <div class="project-info">
+                                <h3>AI Chatbot</h3>
+                                <p>Intelligent conversational interface built with advanced NLP techniques.</p>
+                                <a href="https://github.com/SnakeWakes/chatbot" class="btn btn-small">View Project</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <img src="/unity-game.jpg" alt="Unity 2D Game">
+                            <div class="project-info">
+                                <h3>Unity 2D Game</h3>
+                                <p>Engaging 2D game developed using Unity game engine with custom mechanics.</p>
+                                <a href="#" class="btn btn-small">View Details</a>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <img src="/discord-bot.jpg" alt="Discord Bot">
+                            <div class="project-info">
+                                <h3>Discord Bot</h3>
+                                <p>Custom Discord bot with server management and interactive features.</p>
+                                <a href="#" class="btn btn-small">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="hidden-section">
+                <div class="section-content">
+                    <h2>Get In Touch</h2>
+                    <div class="contact-grid">
+                        <div class="contact-form">
+                            <form id="contact-form">
+                                <input type="text" placeholder="Your Name" required>
+                                <input type="email" placeholder="Your Email" required>
+                                <textarea placeholder="Your Message" required></textarea>
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-method">
+                                <i class="icon-phone"></i>
+                                <span>+44 7543276786</span>
+                            </div>
+                            <div class="contact-method">
+                                <i class="icon-email"></i>
+                                <span>coreyn1999@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="#" class="social-icon">GitHub</a>
+                <a href="#" class="social-icon">LinkedIn</a>
+                <a href="#" class="social-icon">Twitter</a>
+            </div>
+            <p>&copy; 2024 Corey Nicholas. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
