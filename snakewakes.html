@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corey Nicholas</title>
+    <style>
+        :root {
+            --primary: #2d3436;
+            --secondary: #0984e3;
+            --light: #dfe6e9;
+            --accent: #00b894;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Consolas', monospace;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: var(--primary);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        header {
+        height: 35vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        border-bottom: 4px solid var(--accent);
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 3px solid white;
+        object-fit: cover;
+    }
+
+    .name {
+        font-size: 2.8rem;
+        font-weight: bold;
+    }
+
+    .title {
+        font-size: 1.3rem;
+        opacity: 0.9;
+    }
+
+    .contact {
+        font-size: 1.1rem;
+        opacity: 0.8;
+    }
+
+    .status {
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    #open {
+        color: #00ff00;
+        font-weight: 700;
+    }
+
+        section {
+            padding: 4rem 1rem;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+        }
+
+        .skills, .technologies, .other-skills, .experience, .portfolio {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .skill, .technology, .other-skill, .job, .project {
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-icon, .tech-icon, .other-icon {
+            font-size: 2rem;
+        }
+
+        .job-title, .project-title {
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1 class="name">Corey Nicholas</h1>
+            <p class="title">Full Stack Developer & Freelancer</p>
+            <p class="contact">📧 coreyn1999@gmail.com | 📞 +44 7543276786</p>
+            <p class="status">Currently: <span id="open">OPEN</span> for freelance work</p>
+        </div>
+    </header>
+
+    <section id="skills">
+        <h2 class="section-title">Programming Languages</h2>
+        <div class="skills">
+            <div class="skill"><div class="skill-icon">#️⃣</div>C#</div>
+            <div class="skill"><div class="skill-icon">☕</div>Java</div>
+            <div class="skill"><div class="skill-icon">🐍</div>Python</div>
+            <div class="skill"><div class="skill-icon">📊</div>Matlab</div>
+            <div class="skill"><div class="skill-icon">📝</div>JavaScript</div>
+            <div class="skill"><div class="skill-icon">🎮</div>Lua</div>
+            <div class="skill"><div class="skill-icon">🐘</div>PHP</div>
+            <div class="skill"><div class="skill-icon">🐪</div>Perl</div>
+            <div class="skill"><div class="skill-icon">🔣</div>Haskell</div>
+            <div class="skill"><div class="skill-icon">🤖</div>Prolog</div>
+            <div class="skill"><div class="skill-icon">🎭</div>GDScript</div>
+            <div class="skill"><div class="skill-icon">📌</div>PEP9</div>
+        </div>
+    </section>
+
+    <section id="technologies">
+        <h2 class="section-title">Technologies & Libraries</h2>
+        <div class="technologies">
+            <div class="technology"><div class="tech-icon">⚛️</div>ReactJS</div>
+            <div class="technology"><div class="tech-icon">🔄</div>Node.js</div>
+            <div class="technology"><div class="tech-icon">🌶️</div>Flask</div>
+            <div class="technology"><div class="tech-icon">💡</div>jQuery</div>
+            <div class="technology"><div class="tech-icon">📱</div>Android</div>
+            <div class="technology"><div class="tech-icon">🛠️</div>JUnit</div>
+            <div class="technology"><div class="tech-icon">📦</div>Maven</div>
+            <div class="technology"><div class="tech-icon">🎮</div>Godot</div>
+            <div class="technology"><div class="tech-icon">🕹️</div>Unity</div>
+            <div class="technology"><div class="tech-icon">📂</div>XAMPP</div>
+        </div>
+    </section>
+
+    <section id="other-skills">
+        <h2 class="section-title">Other Skills</h2>
+        <div class="other-skills">
+            <div class="other-skill"><div class="other-icon">🇬🇧</div>English (Native)</div>
+            <div class="other-skill"><div class="other-icon">🇨🇳</div>Mandarin (HSK2)</div>
+            <div class="other-skill"><div class="other-icon">🏴</div>Welsh (Conversational)</div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience">
+            <div class="job">
+                <h3 class="job-title">Freelance Fullstack & Security Developer</h3>
+                <p class="job-duration">| 2014 - 2019</p>
+            </div>
+            <div class="job">
+                <h3 class="job-title">Swansea University</h3>
+                <p class="job-company">| Bsc. Computer Science (2:1)</p>
+                <p class="job-duration">| 2019 - 2023</p>
+            </div>
+            <div class="job">
+                <h3 class="job-title">Full Stack Developer & IT Support</h3>
+                <p class="job-company">| Private LTD Company</p>
+                <p class="job-duration">| 2023 - Present</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2 class="section-title">Portfolio</h2>
+        <div class="portfolio">
+            <div class="project">
+                <img src="/api/placeholder/400/320" alt="Project 1">
+                <h3 class="project-title">E-commerce Platform</h3>
+            </div>
+            <div class="project">
+                <img src="/api/placeholder/400/320" alt="Project 2">
+                <h3 class="project-title">Task Management App</h3>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
