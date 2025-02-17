@@ -7,7 +7,7 @@
     <style>
         :root {
             --primary: #2d3436;
-            --secondary: #0984e3;
+            --secondary: #000000;
             --light: #dfe6e9;
             --accent: #00b894;
         }
@@ -24,65 +24,141 @@
             color: var(--primary);
             text-align: center;
             line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        header {
-        height: 35vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: white;
-        text-align: center;
-        padding: 2rem;
-        border-bottom: 4px solid var(--accent);
-    }
+        .header-content {
+            opacity: 0;
+            transform: scale(0.5);
+            animation: revealBox 1s ease-out forwards;
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .header-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-    }
+        .header-content h1, .header-content p {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInText 1s ease-out forwards;
+            animation-delay: 0.5s;
+        }
 
-    .profile-pic {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        border: 3px solid white;
-        object-fit: cover;
-    }
+        .header-content p:nth-of-type(2) {
+            animation-delay: 1s;
+        }
 
-    .name {
-        font-size: 2.8rem;
-        font-weight: bold;
-    }
+        .header-content p:nth-of-type(3) {
+            animation-delay: 1.5s;
+        }
 
-    .title {
-        font-size: 1.3rem;
-        opacity: 0.9;
-    }
+        @keyframes revealBox {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-    .contact {
-        font-size: 1.1rem;
-        opacity: 0.8;
-    }
+        @keyframes slideInText {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .status {
-        margin-top: 0.5rem;
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
+        .name {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
 
-    #open {
-        color: #00ff00;
-        font-weight: 700;
+        .title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin: 0.5rem 0;
+        }
+
+        .contact {
+            font-size: 1.1rem;
+            color: var(--primary);
+            opacity: 0.8;
+        }
+
+        .status {
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        #open {
+            color: #00b894;
+            font-weight: 700;
+        }
+
+
+        .nav-button {
+    padding: 0.7rem 1.4rem;
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+    letter-spacing: 0.5px;
+}
+
+.nav-button:hover {
+    background: white;
+    color: var(--secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.nav-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button:focus {
+    outline: 3px solid var(--secondary);
+}
+
+
+    .nav-button:disabled {
+        background: #dfe6e9;
+        border-color: #dfe6e9;
+        color: #b2bec3;
+        cursor: not-allowed;
+        box-shadow: none;
     }
 
         section {
+            display: none;
             padding: 4rem 1rem;
             max-width: 800px;
-            margin: auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section-title {
@@ -105,6 +181,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .skill-icon, .tech-icon, .other-icon {
@@ -115,19 +192,23 @@
             font-size: 1.2rem;
             color: var(--secondary);
         }
-
-        
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1 class="name">Corey Nicholas</h1>
-            <p class="title">Full Stack Developer & Freelancer</p>
-            <p class="contact">📧 coreyn1999@gmail.com | 📞 +44 7543276786</p>
-            <p class="status">Currently: <span id="open">OPEN</span> for freelance work</p>
-        </div>
-    </header>
+    <div class="header-content">
+        <h1 class="name">Corey Nicholas</h1>
+        <p class="title">Full Stack Developer & Freelancer</p>
+        <p class="contact">📧 coreyn1999@gmail.com | 📞 +44 7543276786</p>
+        <p class="status">Currently: <span id="open">OPEN</span> for freelance work</p>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="nav-button" onclick="showSection('skills')">Programming Languages</button>
+        <button class="nav-button" onclick="showSection('technologies')">Technologies</button>
+        <button class="nav-button" onclick="showSection('other-skills')">Other Skills</button>
+        <button class="nav-button" onclick="showSection('experience')">Experience</button>
+        <button class="nav-button" onclick="showSection('portfolio')">Portfolio</button>
+    </div>
 
     <section id="skills">
         <h2 class="section-title">Programming Languages</h2>
@@ -205,5 +286,17 @@
             </div>
         </div>
     </section>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show the selected section
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
 </body>
 </html>
