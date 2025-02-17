@@ -11,14 +11,14 @@
             --light: #dfe6e9;
             --accent: #00b894;
         }
-
+    
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Consolas', monospace;
         }
-
+    
         body {
             background: #f5f5f5;
             color: var(--primary);
@@ -30,7 +30,7 @@
             align-items: center;
             justify-content: center;
         }
-
+    
         .header-content {
             opacity: 0;
             transform: scale(0.5);
@@ -40,22 +40,22 @@
             position: relative;
             overflow: hidden;
         }
-
+    
         .header-content h1, .header-content p {
             opacity: 0;
             transform: translateY(30px);
             animation: slideInText 1s ease-out forwards;
             animation-delay: 0.5s;
         }
-
+    
         .header-content p:nth-of-type(2) {
             animation-delay: 1s;
         }
-
+    
         .header-content p:nth-of-type(3) {
             animation-delay: 1.5s;
         }
-
+    
         @keyframes revealBox {
             0% {
                 opacity: 0;
@@ -66,7 +66,7 @@
                 transform: scale(1);
             }
         }
-
+    
         @keyframes slideInText {
             0% {
                 opacity: 0;
@@ -77,103 +77,101 @@
                 transform: translateY(0);
             }
         }
-
+    
         .name {
             font-size: 2.8rem;
             font-weight: bold;
             color: var(--primary);
         }
-
+    
         .title {
             font-size: 1.3rem;
             color: var(--secondary);
             margin: 0.5rem 0;
         }
-
+    
         .contact {
             font-size: 1.1rem;
             color: var(--primary);
             opacity: 0.8;
         }
-
+    
         .status {
             margin-top: 0.5rem;
             font-size: 1.2rem;
             font-weight: bold;
         }
-
+    
         #open {
             color: #00b894;
             font-weight: 700;
         }
-
-
+    
         .nav-button {
-    padding: 0.7rem 1.4rem;
-    background: var(--secondary);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-transform: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    outline: none;
-    letter-spacing: 0.5px;
-}
-
-.nav-button:hover {
-    background: white;
-    color: var(--secondary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-3px);
-}
-
-.nav-button:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.nav-button:focus {
-    outline: 3px solid var(--secondary);
-}
-
-
-    .nav-button:disabled {
-        background: #dfe6e9;
-        border-color: #dfe6e9;
-        color: #b2bec3;
-        cursor: not-allowed;
-        box-shadow: none;
-    }
-
+            padding: 0.7rem 1.4rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            outline: none;
+            letter-spacing: 0.5px;
+        }
+    
+        .nav-button:hover {
+            background: white;
+            color: var(--secondary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+        }
+    
+        .nav-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    
+        .nav-button:focus {
+            outline: 3px solid var(--secondary);
+        }
+    
+        .nav-button:disabled {
+            background: #dfe6e9;
+            border-color: #dfe6e9;
+            color: #b2bec3;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+    
         section {
             display: none;
             padding: 4rem 1rem;
             max-width: 800px;
             animation: fadeIn 0.5s ease-out;
         }
-
+    
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
+    
         .section-title {
             font-size: 1.5rem;
             color: var(--secondary);
             margin-bottom: 2rem;
         }
-
+    
         .skills, .technologies, .other-skills, .experience, .portfolio {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 1.5rem;
         }
-
+    
         .skill, .technology, .other-skill, .job, .project {
             padding: 1rem;
             background: white;
@@ -183,16 +181,88 @@
             gap: 0.5rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
+    
         .skill-icon, .tech-icon, .other-icon {
             font-size: 2rem;
         }
-
+    
         .job-title, .project-title {
             font-size: 1.2rem;
             color: var(--secondary);
         }
+    
+        .portfolio {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 1rem;
+        }
+
+        .project {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            line-height: 1.4;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .project-link {
+            padding: 0.6rem 1.2rem;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .project-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+        }
     </style>
+    
 </head>
 <body>
     <div class="header-content">
@@ -273,19 +343,31 @@
         </div>
     </section>
 
+
     <section id="portfolio">
         <h2 class="section-title">Portfolio</h2>
         <div class="portfolio">
             <div class="project">
-                <img src="/api/placeholder/400/320" alt="Project 1">
+                <img src="/api/placeholder/400/320" alt="E-commerce Platform">
                 <h3 class="project-title">E-commerce Platform</h3>
+                <p class="project-description">A full-featured e-commerce solution with product management, cart functionality, and secure checkout.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
             </div>
             <div class="project">
-                <img src="/api/placeholder/400/320" alt="Project 2">
+                <img src="/api/placeholder/400/320" alt="Task Management App">
                 <h3 class="project-title">Task Management App</h3>
+                <p class="project-description">A collaborative task management tool with real-time updates and team features.</p>
+                <div class="project-links">
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="#" class="project-link">Source Code</a>
+                </div>
             </div>
         </div>
     </section>
+    
 
     <script>
         function showSection(sectionId) {
