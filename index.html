@@ -3,601 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corey Nicholas | Full Stack Developer</title>
+    <title>SnakeWakes | Full Stack Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2d3436;
-            --secondary: #000000;
-            --light: #dfe6e9;
-            --accent: #00b894;
-        }
-    
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Consolas', monospace;
-        }
-    
         body {
-            background: #f5f5f5;
-            color: var(--primary);
-            text-align: center;
-            line-height: 1.5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
         }
-    
-        .header-content {
-            opacity: 0;
-            transform: scale(0.5);
-            animation: revealBox 1s ease-out forwards;
-            padding: 2rem;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            margin-top: 2rem;
-        }
-    
-        .header-content h1, .header-content p {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideInText 1s ease-out forwards;
-            animation-delay: 0.5s;
-        }
-    
-        .header-content p:nth-of-type(2) {
-            animation-delay: 1s;
-        }
-    
-        .header-content p:nth-of-type(3) {
-            animation-delay: 1.5s;
-        }
-    
-        @keyframes revealBox {
-            0% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-    
-        @keyframes slideInText {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    
-        .name {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary);
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-            letter-spacing: 1px;
-        }
-    
-        .title {
-            font-size: 1.5rem;
-            color: var(--secondary);
-            margin: 0.7rem 0;
-            font-weight: 600;
-        }
-    
-        .contact {
-            font-size: 1.1rem;
-            color: var(--primary);
-            opacity: 0.8;
-            margin-bottom: 0.5rem;
-        }
-    
-        .status {
-            margin-top: 0.8rem;
-            font-size: 1.3rem;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            background-color: rgba(0, 184, 148, 0.1);
-            display: inline-block;
-            border-radius: 30px;
-        }
-    
-        #open {
-            color: #00b894;
-            font-weight: 700;
-        }
-    
-        .nav-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            max-width: 90%;
-        }
-    
-        .nav-button {
-            padding: 0.7rem 1.4rem;
-            background: var(--secondary);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 500;
-            text-transform: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            outline: none;
-            letter-spacing: 0.5px;
-        }
-    
-        .nav-button:hover {
-            background: white;
-            color: var(--secondary);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transform: translateY(-3px);
-        }
-    
-        .nav-button:active {
-            transform: translateY(1px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-    
-        .nav-button:focus {
-            outline: 3px solid var(--secondary);
-        }
-    
-        .nav-button:disabled {
-            background: #dfe6e9;
-            border-color: #dfe6e9;
-            color: #b2bec3;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-    
-        section {
-            display: none;
-            padding: 4rem 1rem;
-            max-width: 900px;
-            width: 90%;
-            animation: fadeIn 0.5s ease-out;
-        }
-    
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            margin-bottom: 2.5rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 3px;
-            background: var(--accent);
-            bottom: -10px;
-            left: 25%;
-        }
-    
-        .skills, .technologies, .other-skills {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-    
-        .skill, .technology, .other-skill {
-            padding: 1rem 1.5rem;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .skill:hover, .technology:hover, .other-skill:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-    
-        .skill-icon, .tech-icon, .other-icon {
-            font-size: 2rem;
-            margin-right: 0.3rem;
-        }
-    
-        .experience {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .job {
-            background: white;
-            border-radius: 10px;
-            padding: 1.8rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            transition: all 0.3s ease;
-            border-left: 5px solid var(--accent);
-        }
-        
-        .job:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-        }
-    
-        .job-title {
-            font-size: 1.4rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-        
-        .job-company {
-            font-size: 1.2rem;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .job-duration {
-            font-size: 1rem;
-            color: var(--accent);
-            font-weight: 600;
-        }
-        
-        .job-description {
-            margin-top: 1rem;
-            font-size: 1rem;
-            color: var(--primary);
-            line-height: 1.6;
-        }
-
-        .portfolio {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            flex-wrap: wrap;
-            padding: 1rem;
-        }
-
-        .project {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 350px;
-            text-align: center;
+        .section-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            border-top: 5px solid var(--accent);
         }
-
-        .project img {
-            width: 100%;
-            height: 200px;
-            object-fit: scale-down;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-            transition: transform 0.3s ease;
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
-
-        .project-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin: 0;
-            font-weight: bold;
-        }
-
-        .project-description {
-            font-size: 1rem;
-            color: var(--secondary);
-            line-height: 1.5;
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .project-technologies {
-            font-size: 1rem;
-            color: var(--accent);
-            font-weight: 600;
-            padding: 0.5rem;
-            border-top: 1px dashed #ddd;
-            border-bottom: 1px dashed #ddd;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 0.5rem;
-        }
-
-        .project-link {
-            padding: 0.7rem 1.4rem;
-            background-color: var(--accent);
-            color: white;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
+        .project-card {
             transition: all 0.3s ease;
-            font-size: 0.9rem;
         }
-
-        .project-link:hover {
-            background-color: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        .project-card:hover {
+            border-color: #3b82f6;
         }
-
-        .project:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        .skill-category {
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
-        
-        .project:hover img {
-            transform: scale(1.05);
+        .skill-category:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
-        
-        .bio {
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--primary);
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
-        
-        .back-to-top {
+        /* Modal styles */
+        .modal {
+            display: none;
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--accent);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 90%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            opacity: 0;
-            pointer-events: none;
         }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            background: var(--secondary);
-        }
-        
-        @media (max-width: 768px) {
-            .nav-buttons {
-                flex-direction: column;
-                width: 80%;
-            }
-            
-            .portfolio {
-                gap: 2rem;
-            }
-            
-            .project {
-                width: 90%;
-            }
+        .close:hover {
+            color: black;
         }
     </style>
-    
 </head>
-<body>
-    <div class="header-content">
-        <h1 class="name">Corey Nicholas</h1>
-        <p class="title">Full Stack Developer & Software Engineer</p>
-        <p class="contact">📧 coreyn1999@gmail.com | 📞 +44 7543276786 | 🔗 github.com/coreynicholas</p>
-        <p class="status">Currently: <span id="open">OPEN</span> for freelance work</p>
-        <hr><br>
+<body class="min-h-screen bg-gray-50">
+    <!-- Video/Demo Modal -->
+    <div id="demoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent" class="mt-4">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
     </div>
 
-    <div class="bio">
-        Versatile Full Stack Developer with over 8 years of experience creating robust web applications and solving complex technical challenges. Proficient in multiple programming languages and frameworks with a strong background in both front-end and back-end development. Passionate about building innovative solutions that deliver exceptional user experiences.
+    <!-- Main container -->
+    <div class="container mx-auto px-4 py-12 max-w-6xl">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
+            <div class="mb-6 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900">Corey Nicholas</h1>
+                <h2 class="text-2xl md:text-3xl text-blue-600 mt-2">Full Stack Developer</h2>
+                <p class="text-gray-600 mt-4 max-w-lg">BSc. Computer Science Graduate | Building scalable web applications with modern technologies and clean code practices.</p>
+            </div>
+
+            
+            
+            <div class="flex space-x-4">
+                <a href="https://github.com/snakewakes" target="_blank" class="text-gray-500 hover:text-gray-900 transition-colors text-2xl">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/corey-nicholas/" target="_blank" class="text-gray-500 hover:text-gray-900 transition-colors text-2xl">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:coreyn1999@gmail.com" class="text-gray-500 hover:text-gray-900 transition-colors text-2xl">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left column -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- About section -->
+                <section class="section-card bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">About Me</h2>
+                    <div class="space-y-4 text-gray-600">
+                        <p>I'm a full-stack developer with hands-on experience from freelance work, personal projects, and working with small gaming communities. I'm currently in my first industry role, where I'm continuing to build on what I learned both at university and through years of self-driven development.</p>
+                        <p>Along the way, I've developed custom game modifications, built forum-based tools, and created bespoke software using Java and other languages to meet specific client needs. Whether it's building something from scratch or improving existing systems, I enjoy solving real problems with clean, efficient code that's easy to maintain and scale.</p>
+                        <p>I graduated with a BSc in Computer Science from Swansea University. My final project focused on building a chatbot AI designed for basic human recognition tasks, which earned a 70% mark.</p>
+                    </div>                    
+                </section>
+
+                <!-- Experience section -->
+                <section class="section-card bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Professional Experience</h2>
+                    <div class="space-y-8">
+                        <div class="pl-4 border-l-2 border-blue-200">
+                            <h3 class="text-xl font-semibold text-gray-800">IT Assistant & Full Stack Developer</h3>
+                            <p class="text-blue-600 text-sm mb-2">VIP-System Limited, <a href="https://www.google.com/maps/search/?api=1&query=Glasgow+Clydebank" target="_blank" class="hover:text-blue-800 underline">Glasgow, Clydebank</a> • Sep 2023 - Current</p>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Overhauled the company website frontend, introducing new libraries, modern designs, and improved functionality while maintaining consistency with provided products</li>
+                                <li>Replaced legacy code for the company's job request system, product logs, and client contact system</li>
+                                <li>Rebuilt an internal intranet for critical company information, utilizing ReactJS and Node.js to replace PHP5.6 for improved data security</li>
+                                <li>Developed a stock storage system for the onsite warehouse using Python (Flask) and SQLite, implementing algorithmic predictions for future stock costs, budget analysis, and demand tracking via a custom API</li>
+                            </ul>
+                        </div>
+                        <div class="pl-4 border-l-2 border-blue-200">
+                            <h3 class="text-xl font-semibold text-gray-800">Freelance Developer</h3>
+                            <p class="text-blue-600 text-sm mb-2">Self-Employed, <a href="https://www.google.com/maps/search/?api=1&query=Merthyr+Tydfil+Wales" target="_blank" class="hover:text-blue-800 underline">Wales, Merthyr Tydfil</a> • June 2014 - June 2019</p>
+                            <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                <li>Provided website development, server management, and advisory services for small to medium gaming communities</li>
+                                <li>Managed and consulted on backend infrastructure and security, resolving issues from prior client data breaches</li>
+                                <li>Modified and enhanced existing video game codebases using Java, Lua, and C#</li>
+                                <li>Developed client-specific software integrating Jython and JavaFX for tailored solutions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects section -->
+                <section class="section-card bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Personal Projects</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Project 1 -->
+                        <div class="project-card bg-white p-4 rounded-lg border border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">ECommerce & Community</h3>
+                            <p class="text-sm text-gray-600 mb-3">Personal Solo Project • Nov 2024 - Ongoing</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">ReactJS</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">NodeJS</span>
+                                <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">MongoDB</span>
+                            </div>
+                            <button onclick="showDemo('ecommerce', 'https://www.youtube.com/embed/example1')" 
+                                    class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-play-circle mr-1"></i> View Demo
+                            </button>
+                        </div>
+                        
+                        <!-- Project 2 -->
+                        <div class="project-card bg-white p-4 rounded-lg border border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Godot Game Development</h3>
+                            <p class="text-sm text-gray-600 mb-3">Personal Solo Project • Jan 2024 - Ongoing</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">GDScript</span>
+                                <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">C#</span>
+                            </div>
+                            <button onclick="showDemo('godot', 'https://www.youtube.com/embed/example2')" 
+                                    class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-play-circle mr-1"></i> View Demo
+                            </button>
+                        </div>
+
+                        <!-- Project Chimchat thing -->
+                        <div class="project-card bg-white p-4 rounded-lg border border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Chimchat</h3>
+                            <p class="text-sm text-gray-600 mb-3">Personal Solo Project • April 2025 - May 2025</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Native JS</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">NodeJS</span>
+                                <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">NPM</span>
+                            </div>
+                            <button onclick="window.open('https://www.npmjs.com/package/chimcham-chatter', '_blank')"   
+                                    class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-play-circle mr-1"></i> View
+                            </button>
+                        </div>
+                        
+                        <!-- Project 3 -->
+                        <div class="project-card bg-white p-4 rounded-lg border border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Employee HR Management App</h3>
+                            <p class="text-sm text-gray-600 mb-3">Personal Solo Project • June 2023 - Paused</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">ReactJS</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">NodeJS</span>
+                                <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Javascript</span>
+                                <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">PHP</span>
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Python</span>
+                                <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Android Studio</span>
+                            </div>
+                            <button onclick="showDemo('hr-app', 'https://www.youtube.com/embed/example3')" 
+                                    class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-play-circle mr-1"></i> View Demo
+                            </button>
+                        </div>
+                        
+                        <!-- Project 4 -->
+                        <div class="project-card bg-white p-4 rounded-lg border border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Bananote</h3>
+                            <p class="text-sm text-gray-600 mb-3">Personal Solo Project • March 2024 - Ongoing</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Electron</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">TypeScript</span>
+                                <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">NodeJS</span>
+                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Tailwind</span>
+                            </div>
+                            <button onclick="window.location.href='./Bananote-Portable.exe'" 
+                                    class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-download mr-1"></i> Download
+                            </button>
+                        </div>
+                        
+                        <!-- Project 5 -->
+                        <div class="project-card bg-white p-4 rounded-lg border border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">Web-based Print Library</h3>
+                            <p class="text-sm text-gray-600 mb-3">Open-source Collaborative • Jan 2024 - Ongoing</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Javascript</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Typescript</span>
+                                <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Git</span>
+                            </div>
+                            <button onclick="showDemo('print-library', 'https://www.youtube.com/embed/example4')" 
+                                    class="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-play-circle mr-1"></i> View Demo
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right column -->
+            <div class="space-y-8">
+                <!-- Skills section -->
+                <section class="section-card bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Skills & Expertise</h2>
+                    
+                    <div class="skill-category">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Programming Languages</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-blue-50 text-blue-800 text-sm rounded-full">C#</span>
+                            <span class="px-3 py-1.5 bg-blue-50 text-blue-800 text-sm rounded-full">Java</span>
+                            <span class="px-3 py-1.5 bg-green-50 text-green-800 text-sm rounded-full">Python</span>
+                            <span class="px-3 py-1.5 bg-purple-50 text-purple-800 text-sm rounded-full">MATLAB</span>
+                            <span class="px-3 py-1.5 bg-red-50 text-red-800 text-sm rounded-full">Javascript</span>
+                            <span class="px-3 py-1.5 bg-yellow-50 text-yellow-800 text-sm rounded-full">Lua</span>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-800 text-sm rounded-full">PHP</span>
+                            <span class="px-3 py-1.5 bg-blue-50 text-blue-800 text-sm rounded-full">Perl</span>
+                            <span class="px-3 py-1.5 bg-green-50 text-green-800 text-sm rounded-full">Haskell</span>
+                            <span class="px-3 py-1.5 bg-purple-50 text-purple-800 text-sm rounded-full">Prolog</span>
+                            <span class="px-3 py-1.5 bg-red-50 text-red-800 text-sm rounded-full">GDScript</span>
+                            <span class="px-3 py-1.5 bg-yellow-50 text-yellow-800 text-sm rounded-full">SQL</span>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-800 text-sm rounded-full">PEP9</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Technologies & Libraries</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-blue-50 text-blue-800 text-sm rounded-full">ReactJS</span>
+                            <span class="px-3 py-1.5 bg-blue-50 text-blue-800 text-sm rounded-full">NodeJS</span>
+                            <span class="px-3 py-1.5 bg-green-50 text-green-800 text-sm rounded-full">Flask</span>
+                            <span class="px-3 py-1.5 bg-purple-50 text-purple-800 text-sm rounded-full">JQuery</span>
+                            <span class="px-3 py-1.5 bg-red-50 text-red-800 text-sm rounded-full">Android</span>
+                            <span class="px-3 py-1.5 bg-yellow-50 text-yellow-800 text-sm rounded-full">JUnit</span>
+                            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-800 text-sm rounded-full">Maven</span>
+                            <span class="px-3 py-1.5 bg-blue-50 text-blue-800 text-sm rounded-full">Godot</span>
+                            <span class="px-3 py-1.5 bg-green-50 text-green-800 text-sm rounded-full">Unity</span>
+                            <span class="px-3 py-1.5 bg-purple-50 text-purple-800 text-sm rounded-full">XAMPP</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Languages</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1.5 bg-blue-50 text-blue-800 text-sm rounded-full">English (Native)</span>
+                            <span class="px-3 py-1.5 bg-green-50 text-green-800 text-sm rounded-full">Mandarin (HSK 2)</span>
+                            <span class="px-3 py-1.5 bg-purple-50 text-purple-800 text-sm rounded-full">Welsh (Conversational)</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Education section -->
+                <section class="section-card bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Education</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">Bachelor of Computer Science</h3>
+                            <p class="text-blue-600 text-sm">Swansea University, Wales • Sep 2019 - June 2023</p>
+                            <p class="text-gray-600 text-sm mt-1">Final Dissertation: Creating a Chatbot AI for Human Recognition (70% Final)</p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">AS & A Levels</h3>
+                            <p class="text-blue-600 text-sm">Merthyr Tydfil College, Wales • Sep 2016 - June 2019</p>
+                            <p class="text-gray-600 text-sm mt-1">ACBCC - Computer Science, Mathematics, Physics, Chemistry, Electronics</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+
     </div>
-
-    <div class="nav-buttons">
-        <button class="nav-button" onclick="showSection('skills')">Programming Languages</button>
-        <button class="nav-button" onclick="showSection('technologies')">Technologies</button>
-        <button class="nav-button" onclick="showSection('other-skills')">Other Skills</button>
-        <button class="nav-button" onclick="showSection('experience')">Experience</button>
-        <button class="nav-button" onclick="showSection('portfolio')">Portfolio</button>
-    </div>
-
-    <section id="skills">
-        <h2 class="section-title">Programming Languages</h2>
-        <div class="skills">
-            <div class="skill"><div class="skill-icon">#️⃣</div>C#</div>
-            <div class="skill"><div class="skill-icon">☕</div>Java</div>
-            <div class="skill"><div class="skill-icon">🐍</div>Python</div>
-            <div class="skill"><div class="skill-icon">📊</div>Matlab</div>
-            <div class="skill"><div class="skill-icon">📝</div>JavaScript</div>
-            <div class="skill"><div class="skill-icon">🎮</div>Lua</div>
-            <div class="skill"><div class="skill-icon">🐘</div>PHP</div>
-            <div class="skill"><div class="skill-icon">🐪</div>Perl</div>
-            <div class="skill"><div class="skill-icon">🔣</div>Haskell</div>
-            <div class="skill"><div class="skill-icon">🤖</div>Prolog</div>
-            <div class="skill"><div class="skill-icon">🎭</div>GDScript</div>
-            <div class="skill"><div class="skill-icon">📌</div>PEP9</div>
-        </div>
-    </section>
-
-    <section id="technologies">
-        <h2 class="section-title">Technologies & Frameworks</h2>
-        <div class="technologies">
-            <div class="technology"><div class="tech-icon">⚛️</div>ReactJS</div>
-            <div class="technology"><div class="tech-icon">🔄</div>Node.js</div>
-            <div class="technology"><div class="tech-icon">🌶️</div>Flask</div>
-            <div class="technology"><div class="tech-icon">💡</div>jQuery</div>
-            <div class="technology"><div class="tech-icon">📱</div>Android SDK</div>
-            <div class="technology"><div class="tech-icon">🛠️</div>JUnit</div>
-            <div class="technology"><div class="tech-icon">📦</div>Maven</div>
-            <div class="technology"><div class="tech-icon">🎮</div>Godot Engine</div>
-            <div class="technology"><div class="tech-icon">🕹️</div>Unity</div>
-            <div class="technology"><div class="tech-icon">📂</div>XAMPP</div>
-            <div class="technology"><div class="tech-icon">🗃️</div>MySQL</div>
-            <div class="technology"><div class="tech-icon">🌐</div>RESTful APIs</div>
-            <div class="technology"><div class="tech-icon">🔒</div>Cybersecurity</div>
-            <div class="technology"><div class="tech-icon">🧪</div>Test-Driven Development</div>
-        </div>
-    </section>
-
-    <section id="other-skills">
-        <h2 class="section-title">Other Skills</h2>
-        <div class="other-skills">
-            <div class="other-skill"><div class="other-icon">🇬🇧</div>English (Native)</div>
-            <div class="other-skill"><div class="other-icon">🇨🇳</div>Mandarin (HSK2)</div>
-            <div class="other-skill"><div class="other-icon">🏴</div>Welsh (Conversational)</div>
-            <div class="other-skill"><div class="other-icon">👥</div>Team Leadership</div>
-            <div class="other-skill"><div class="other-icon">🔍</div>Problem Solving</div>
-            <div class="other-skill"><div class="other-icon">📊</div>Data Analysis</div>
-            <div class="other-skill"><div class="other-icon">🎨</div>UI/UX Design</div>
-            <div class="other-skill"><div class="other-icon">🔄</div>Agile Methodology</div>
-        </div>
-    </section>
-
-    <section id="experience">
-        <h2 class="section-title">Experience</h2>
-        <div class="experience">
-            <div class="job">
-                <h3 class="job-title">Full Stack Developer & IT Support</h3>
-                <p class="job-company">Private LTD Company</p>
-                <p class="job-duration">2023 - Present</p>
-                <p class="job-description">
-                    Developing and maintaining full-stack web applications with React and Node.js. Implementing secure authentication systems and optimizing database performance. Providing technical support and troubleshooting for internal IT systems.
-                </p>
-            </div>
-            <div class="job">
-                <h3 class="job-title">BSc. Computer Science (2:1)</h3>
-                <p class="job-company">Swansea University</p>
-                <p class="job-duration">2019 - 2023</p>
-                <p class="job-description">
-                    Specialized in software development and computer security. Completed a final year project on secure application development. Gained comprehensive knowledge in algorithms, data structures, and software engineering principles.
-                </p>
-            </div>
-            <div class="job">
-                <h3 class="job-title">Freelance Fullstack & Security Developer</h3>
-                <p class="job-company">Self-employed</p>
-                <p class="job-duration">2014 - 2019</p>
-                <p class="job-description">
-                    Designed and implemented custom web solutions for various clients. Specialized in secure application development and security auditing. Created e-commerce platforms, content management systems, and community forums.
-                </p>
-            </div>
-        </div>
-    </section>
-
-
-    <section id="portfolio">
-        <h2 class="section-title">Portfolio</h2>
-        <div class="portfolio">
-            <div class="project">
-                <img src="./project1.1.png" alt="E-commerce Platform">
-                <h3 class="project-title">Marketplace Community</h3>
-                <p class="project-description">A full-featured e-commerce marketplace with forums and freelancer advertisement communities. Includes secure payment processing, user authentication, and real-time notifications.</p>
-                <p class="project-technologies">ReactJS, NodeJS, Express, MongoDB, SCSS</p>
-                <div class="project-links">
-                    <a href="#" class="project-link">Live Demo (TBA)</a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="/api/placeholder/400/320" alt="Civ-Mini Game">
-                <h3 class="project-title">Civ-Mini</h3>
-                <p class="project-description">A browser-based strategy game inspired by the Civilization series. Features turn-based gameplay, resource management, and technology progression in a compact format.</p>
-                <p class="project-technologies">JavaScript, HTML5 Canvas, CSS3</p>
-                <div class="project-links">
-                    <a href="project/terrarchy/index.html" class="project-link">Play Game</a>
-                    <a href="#" class="project-link">Source Code</a>
-                </div>
-            </div>
-            <div class="project">
-                <img src="/api/placeholder/400/320" alt="Secure Chat Application">
-                <h3 class="project-title">SecureChat</h3>
-                <p class="project-description">End-to-end encrypted messaging application with ephemeral messages and secure file sharing capabilities. Prioritizes user privacy and data security.</p>
-                <p class="project-technologies">React Native, Firebase, Crypto API</p>
-                <div class="project-links">
-                    <a href="#" class="project-link">Case Study</a>
-                    <a href="#" class="project-link">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <div class="back-to-top" id="backToTop">↑</div>
 
     <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('section').forEach(section => {
-                section.style.display = 'none';
-            });
+        // Modal functionality for project demos
+        const modal = document.getElementById("demoModal");
+        const modalContent = document.getElementById("modalContent");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+        function showDemo(projectId, videoUrl) {
+            // Clear previous content
+            modalContent.innerHTML = '';
             
-            // Show the selected section
-            document.getElementById(sectionId).style.display = 'block';
-            
-            // Scroll to section
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Back to top functionality
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
+            // Add appropriate content based on project
+            if (projectId === 'ecommerce') {
+                modalContent.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4">ECommerce & Community Demo</h3>
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe width="100%" height="400" src="${videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="mt-4 text-gray-600">This demo showcases the e-commerce functionality and community features of the platform.</p>
+                `;
+            } else if (projectId === 'godot') {
+                modalContent.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4">Godot Game Development Demo</h3>
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe width="100%" height="400" src="${videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="mt-4 text-gray-600">A showcase of game mechanics and features developed using Godot Engine.</p>
+                `;
+            } else if (projectId === 'hr-app') {
+                modalContent.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4">HR Management App Demo</h3>
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe width="100%" height="400" src="${videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="mt-4 text-gray-600">Demonstration of the employee management features and dashboard.</p>
+                `;
+            } else if (projectId === 'print-library') {
+                modalContent.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4">Print Library Demo</h3>
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe width="100%" height="400" src="${videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <p class="mt-4 text-gray-600">Walkthrough of the print library interface and search functionality.</p>
+                `;
             }
-        });
-        
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Show skills section by default
-        window.onload = function() {
-            showSection('skills');
-        };
+            
+            // Show the modal
+            modal.style.display = "block";
+        }
+
+        // Close modal when clicking the X
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close modal when clicking outside the content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
+    <script src="app.js"></script>
 </body>
 </html>
