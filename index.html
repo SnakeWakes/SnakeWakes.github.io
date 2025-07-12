@@ -143,178 +143,167 @@
         }
 
         .projects-container {
-            margin-bottom: 0;
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            margin-right: calc(-50vw + 50%);
-        }
-
-        .project-section {
-            display: flex;
-            align-items: center;
-            min-height: 60vh;
-            padding: 0;
-            margin: 0;
-            gap: 0;
-            width: 100%;
-            transition: transform 0.3s ease;
-        }
-
-        .project-section:nth-child(even) {
-            flex-direction: row-reverse;
-            background: #1a1a1a;
-        }
-
-        .project-section:nth-child(odd) {
-            flex-direction: row;
-            background: #121212;
-        }
-
-        .project-section:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-content {
-            flex: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            max-width: 600px;
+            max-width: 1200px;
             margin: 0 auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            background: rgba(26, 26, 26, 0.5);
-            backdrop-filter: blur(10px);
+            padding: 0 20px;
         }
 
-        .project-video {
-            flex: 1;
-            height: 60vh;
-            background: #1a1a1a;
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Filter System */
+        .filter-container {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .filter-buttons {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
+            margin-top: 20px;
         }
 
-        .video-placeholder {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
+        .filter-button {
+            background: #2d2d2d;
+            color: #b0b0b0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .filter-button:hover {
+            background: #404040;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .filter-button.active {
+            background: #fff;
+            color: #121212;
+            border-color: #fff;
+        }
+
+        .project-card {
+            transition: all 0.3s ease, opacity 0.3s ease;
+        }
+
+        .project-card.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+            display: none !important;
+        }
+
+        .project-card {
             background: #1a1a1a;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .preview-video {
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-video-container {
+            position: relative;
+            height: 200px;
+            background: #1a1a1a;
+            overflow: hidden;
+        }
+
+        .project-video-preview {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: relative;
+        }
+
+        .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
-        }
-
-        .video-placeholder .icon {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 2;
-            font-size: 2rem;
-            opacity: 0.8;
-            background: rgba(0, 0, 0, 0.5);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .video-placeholder h4 {
-            position: absolute;
-            bottom: 60px;
-            left: 20px;
-            z-index: 2;
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.5);
-            padding: 8px 16px;
-            border-radius: 4px;
+        .project-card:hover .video-overlay {
+            opacity: 1;
         }
 
-        .video-placeholder p {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            z-index: 2;
-            color: #fff;
-            font-size: 0.9rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.5);
-            padding: 4px 12px;
-            border-radius: 4px;
-        }
-
-        .play-overlay {
-            position: relative;
-            z-index: 2;
-            background: rgba(0, 0, 0, 0.7);
+        .play-button {
+            background: rgba(0, 0, 0, 0.8);
             color: white;
             border: none;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0.8;
-        }
-
-        .project-icon {
             width: 60px;
             height: 60px;
-            background: #f5f5f5;
-            border-radius: 12px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            margin-bottom: 24px;
+        }
+
+        .play-button:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 24px;
         }
 
         .project-content h3 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 600;
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             letter-spacing: -0.02em;
         }
 
         .project-content p {
             color: #b0b0b0;
-            line-height: 1.8;
-            font-size: 1.1rem;
-            margin-bottom: 24px;
-            max-width: 500px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 20px;
+            gap: 6px;
+            margin-top: 16px;
         }
 
         .tag {
             background: #2d2d2d;
             color: #b0b0b0;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 11px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
@@ -322,7 +311,7 @@
         .tag:hover {
             background: #404040;
             color: #fff;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
         /* Responsive design */
@@ -338,36 +327,47 @@
             }
 
             .intro h1 {
-            font-size: 2.5rem;
-        }
+                font-size: 2.5rem;
+            }
 
             .intro .subtitle {
-            font-size: 1.1rem;
+                font-size: 1.1rem;
             }
 
-            .project-section {
-                flex-direction: column !important;
-                min-height: auto;
-                padding: 40px 0;
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
 
-            .project-section:nth-child(even) {
-                flex-direction: column !important;
+            .filter-buttons {
+                gap: 8px;
             }
-            
-            .project-content {
-                padding: 30px 20px;
-                order: 2;
-                margin: 20px;
+
+            .filter-button {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+
+            .project-video-container {
+                height: 180px;
             }
 
             .project-content h3 {
-                font-size: 2rem;
-        }
+                font-size: 1.3rem;
+            }
 
-        .project-video {
-                height: 40vh;
-                order: 1;
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .nav-arrow.left {
+                left: 10px;
+            }
+
+            .nav-arrow.right {
+                right: 10px;
             }
 
             .portfolio-header h1 {
@@ -392,6 +392,11 @@
             nav a {
                 padding: 6px 10px;
                 font-size: 12px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
 
@@ -433,7 +438,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 2000;
             backdrop-filter: blur(10px);
         }
@@ -490,66 +495,22 @@
         }
 
         .video-content {
-            width: 800px;
-            height: 450px;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            width: 1200px;
+            height: 700px;
+            background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            color: #666;
             position: relative;
             overflow: hidden;
         }
 
-        .video-placeholder {
-            text-align: center;
-        }
-
-        .video-placeholder .icon {
-            font-size: 4rem;
-            margin-bottom: 16px;
-            opacity: 0.7;
-        }
-
-        .video-placeholder h3 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        .video-placeholder p {
-            color: #888;
-            margin-bottom: 20px;
-        }
-
-        .play-button {
-            background: #333;
-            color: #fff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .play-button:hover {
-            background: #555;
-            transform: scale(1.05);
-        }
-
-        .shimmer {
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .modal-video {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: shimmer 2s infinite;
+            object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
         }
 
         @keyframes fadeIn {
@@ -557,20 +518,15 @@
             to { opacity: 1; }
         }
 
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
         @media (max-width: 768px) {
             .video-container {
-                max-width: 95vw;
-                max-height: 95vh;
+                max-width: 98vw;
+                max-height: 98vh;
             }
             
             .video-content {
                 width: 100%;
-                height: 250px;
+                height: 500px;
             }
             
             .video-placeholder .icon {
@@ -610,6 +566,65 @@
         .scroll-top:hover {
             transform: translateY(-3px);
             background: #404040;
+        }
+
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(45, 45, 45, 0.9);
+            color: #fff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            font-size: 1.2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-arrow.visible {
+            opacity: 1 !important;
+        }
+
+        /* Make portfolio page left arrow always visible */
+        #portfolio .nav-arrow.left {
+            opacity: 1 !important;
+        }
+
+        .nav-arrow:hover {
+            background: rgba(64, 64, 64, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-arrow.left {
+            left: 20px;
+        }
+
+        .nav-arrow.right {
+            right: 20px;
+        }
+
+        /* Page transition animations */
+        .page {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .page.slide-left {
+            transform: translateX(-100%);
+        }
+
+        .page.slide-right {
+            transform: translateX(100%);
         }
 
         /* Loading animation for video modal */
@@ -980,59 +995,7 @@
             }
         }
 
-        /* Fullscreen Video Overlay */
-        .fullscreen-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            cursor: pointer;
-        }
 
-        .fullscreen-overlay.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .fullscreen-video {
-            max-width: 90vw;
-            max-height: 90vh;
-            width: auto;
-            height: auto;
-        }
-
-        .close-overlay {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(45, 45, 45, 0.8);
-            border-radius: 50%;
-            transition: background 0.3s ease;
-        }
-
-        .close-overlay:hover {
-            background: rgba(64, 64, 64, 0.9);
-        }
-
-        @media (max-width: 768px) {
-            .fullscreen-video {
-                max-width: 95vw;
-                max-height: 80vh;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1055,10 +1018,13 @@
                 </div>
             </div>
         </div>
+        <button class="nav-arrow right visible" onclick="navigateWithAnimation('about', 'right')">›</button>
     </div>
 
     <!-- Add About Page after Home Page -->
     <div class="page" id="about">
+        <button class="nav-arrow left" onclick="navigateWithAnimation('home', 'left')">‹</button>
+        <button class="nav-arrow right" onclick="navigateWithAnimation('portfolio', 'right')">›</button>
         <div class="container">
             <!-- Professional Bio Section -->
             <div class="about-section fade-in">
@@ -1263,88 +1229,134 @@
                 <button class="close-button" onclick="closeVideoModal()">×</button>
             </div>
             <div class="video-content" id="videoContent">
-                <div class="shimmer"></div>
-                        <div class="video-placeholder">
-                    <div class="icon" id="videoIcon">🎬</div>
-                    <h3 id="videoHeading">Demo Video</h3>
-                    <p id="videoDescription">Click play to watch the demonstration</p>
-                    <button class="play-button" onclick="playDemo()">
-                        <span>▶</span> Play Demo
-                    </button>
-                        </div>
-                    </div>
-                </div>
+                <video class="modal-video" id="modalVideo" controls>
+                    Your browser does not support the video tag.
+                </video>
             </div>
+        </div>
+    </div>
 
     <!-- Portfolio Page -->
     <div class="page" id="portfolio">
+        <button class="nav-arrow left visible" onclick="navigateWithAnimation('about', 'left')">‹</button>
         <div class="portfolio-header fade-in">
-            <h1>Selected Work</h1>
-            <p>A collection of projects that showcase my approach to solving problems.</p>
             <h2>Click on the videos to enlarge them!</h2>
         </div>
+        <div class="filter-container fade-in">
+            <div class="filter-buttons" id="filterButtons">
+                <button class="filter-button active" data-filter="all">All Projects</button>
+                <button class="filter-button" data-filter="Electron">Electron</button>
+                <button class="filter-button" data-filter="React">React</button>
+                <button class="filter-button" data-filter="Node.js">Node.js</button>
+                <button class="filter-button" data-filter="Game Development">Game Development</button>
+                <button class="filter-button" data-filter="MySQL / MongoDB">MySQL / MongoDB</button>
+                <button class="filter-button" data-filter="WebSocket & API">WebSocket & API</button>
+                <button class="filter-button" data-filter="TypeScript">TypeScript</button>
+                <button class="filter-button" data-filter="Plugin System">Plugin System</button>
+                <button class="filter-button" data-filter="C#">C#</button>
+                <button class="filter-button" data-filter="Java">Java</button>
+                <button class="filter-button" data-filter="JavaFX">JavaFX</button>
+            </div>
+        </div>
         <div class="projects-container">
-            <div class="project-section fade-in">
-                <div class="project-content">
-                    <h3>Electorn Alien Defense Game</h3>
-                    <p>An Electron-based strategy game where players lead a global organization in uniting the world against an impending alien invasion. Features include resource management, diplomatic negotiations, and tactical combat planning. Built with Electron, React, Node.js, alongside several other libraries and frameworks. It is currently in very early development.</p>
-                    <div class="project-tags">
-                        <span class="tag">Electron</span>
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">Game Development</span>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-video-container">
+                        <video class="project-video-preview" src="demos/alien.mp4" autoplay muted loop playsinline></video>
+                        <div class="video-overlay">
+                            <button class="play-button" onclick="openVideoModal('alien-game')">▶</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Electron Alien Defense Game</h3>
+                        <p>An Electron-based strategy game where players lead a global organization in uniting the world against an impending alien invasion. Features include resource management, diplomatic negotiations, and tactical combat planning.</p>
+                        <div class="project-tags">
+                            <span class="tag">Electron</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Game Development</span>
+                        </div>
                     </div>
                 </div>
-                <div class="project-video">
-                    <div class="video-placeholder" onclick="showFullscreenVideo(this)">
-                        <video class="preview-video" src="demos/alien.mp4" autoplay muted loop playsinline>
-                            <div class="icon">👽</div>
-                            <h4>Global Defense Initiative</h4>
-                            <p>Gameplay Trailer</p>
-                        </video>
+                
+                <div class="project-card fade-in">
+                    <div class="project-video-container">
+                        <video class="project-video-preview" src="demos/byte.mp4" autoplay muted loop playsinline></video>
+                        <div class="video-overlay">
+                            <button class="play-button" onclick="openVideoModal('byte-batch')">▶</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>ByteBatch</h3>
+                        <p>An early website project that will act as a forums, marketplace and general hub targeted towards developers, computer enthusiasts and related topics. It is intended to be a light based website and future application.</p>
+                        <div class="project-tags">
+                            <span class="tag">Node.js</span>
+                            <span class="tag">React</span>
+                            <span class="tag">MySQL / MongoDB</span>
+                            <span class="tag">WebSocket & API</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="project-section fade-in">
-                <div class="project-content">
-                    <h3>ByteBatch</h3>
-                    <p>An early website project that will act as a forums, marketplace and general hub targetted towards developers, computer enthusiasts and related topics. It is intended to be a light based website and future application.</p>
-                    <div class="project-tags">
-                        <span class="tag">Node.js</span>
-                        <span class="tag">React</span>
-                        <span class="tag">MySQl / MongoDB</span>
-                        <span class="tag">WebSocket & API Integration</span>
+                
+                <div class="project-card fade-in">
+                    <div class="project-video-container">
+                        <video class="project-video-preview" src="demos/bananote.mp4" autoplay muted loop playsinline></video>
+                        <div class="video-overlay">
+                            <button class="play-button" onclick="openVideoModal('bananote')">▶</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Bananote</h3>
+                        <p>A modern, extensible text editor built with Electron and React. Features include syntax highlighting, file management, extension support, and IDE-like capabilities. Perfect for developers who want a lightweight but powerful coding environment.</p>
+                        <div class="project-tags">
+                            <span class="tag">Electron</span>
+                            <span class="tag">React</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Plugin System</span>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <div class="project-card fade-in">
+                    <div class="project-video-container">
+                        <div class="video-placeholder" style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 3rem;">
+                            🐍
+                        </div>
+                        <div class="video-overlay">
+                            <button class="play-button" onclick="openVideoModal('snake-game')">▶</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Snake Unity Game</h3>
+                        <p>A test game for when I was first learning Unity2D during university, submitted as a project.</p>
+                        <div class="project-tags">
+                            <span class="tag">C#</span>
+                            <span class="tag">Game Development</span>
+                            <span class="tag">Unity</span>
+                        </div>
                     </div>
                 </div>
-                <div class="project-video">
-                    <div class="video-placeholder" onclick="showFullscreenVideo(this)">
-                        <video class="preview-video" src="demos/byte.mp4" autoplay muted loop playsinline>
-                            <div class="icon">🌐</div>
-                            <h4>ByteBatch</h4>
-                            <p>Website Preview</p>
-                        </video>
+                
+                <div class="project-card fade-in">
+                    <div class="project-video-container">
+                        <div class="video-placeholder" style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 3rem;">
+                            🐀
+                        </div>
+                        <div class="video-overlay">
+                            <button class="play-button" onclick="openVideoModal('rat-game')">▶</button>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Rat Game</h3>
+                        <p>A Java based game, that is influenced by Bomber man, you must avoid the enemy rats and items, while managing to win the levels.</p>
+                        <div class="project-tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">JavaFX</span>
+                            <span class="tag">Game Development</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="project-section fade-in">
-                <div class="project-content">
-                    <h3>Bananote</h3>
-                    <p>A modern, extensible text editor built with Electron and React. Features include syntax highlighting, file management, extension support, and IDE-like capabilities. Perfect for developers who want a lightweight but powerful coding environment.</p>
-                    <div class="project-tags">
-                        <span class="tag">Electron</span>
-                        <span class="tag">React</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">Plugin System</span>
-                    </div>
-                </div>
-                <div class="project-video">
-                    <div class="video-placeholder" onclick="showFullscreenVideo(this)">
-                        <video class="preview-video" src="demos/bananote.mp4" autoplay muted loop playsinline>
-                            <div class="icon">📝</div>
-                            <h4>Bananote</h4>
-                            <p>Code Editor Preview</p>
-                        </video>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1353,13 +1365,7 @@
     <!-- Add scroll to top button -->
     <button class="scroll-top" onclick="scrollToTop()" title="Scroll to top">↑</button>
 
-    <!-- Add this before the closing body tag -->
-    <div class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullscreenVideo()">
-        <div class="close-overlay">×</div>
-        <video class="fullscreen-video" id="fullscreenVideo" controls>
-            Your browser does not support the video tag.
-        </video>
-    </div>
+
 
     <script>
         // Page navigation with smooth transitions
@@ -1372,14 +1378,14 @@
                 page.classList.remove('active');
             });
             
-            // Update nav active state
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Show selected page and update nav
+            // Show selected page
             document.getElementById(pageId).classList.add('active');
-            event.target.classList.add('active');
+            
+            // Update navbar
+            updateNavbar(pageId);
+            
+            // Update arrow visibility
+            updateArrowVisibility(pageId);
             
             // Reset animations for the new page
             setTimeout(() => {
@@ -1388,7 +1394,113 @@
                     initializeSkillBars();
                     initializeLearningProgress();
                 }
+                if (pageId === 'portfolio') {
+                    initializeFilterSystem();
+                }
             }, 100);
+        }
+
+        // Animated navigation function
+        function navigateWithAnimation(targetPage, direction) {
+            const currentPage = document.querySelector('.page.active');
+            const targetPageElement = document.getElementById(targetPage);
+            
+            if (!currentPage || !targetPageElement) return;
+            
+            // Add slide animation to current page
+            if (direction === 'right') {
+                currentPage.classList.add('slide-left');
+            } else {
+                currentPage.classList.add('slide-right');
+            }
+            
+            // Show target page with opposite animation
+            targetPageElement.classList.add('active');
+            if (direction === 'right') {
+                targetPageElement.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    targetPageElement.style.transform = 'translateX(0)';
+                }, 50);
+            } else {
+                targetPageElement.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    targetPageElement.style.transform = 'translateX(0)';
+                }, 50);
+            }
+            
+            // Remove active class from current page after animation
+            setTimeout(() => {
+                currentPage.classList.remove('active', 'slide-left', 'slide-right');
+                currentPage.style.transform = '';
+                targetPageElement.style.transform = '';
+            }, 600);
+            
+            // Update navbar
+            updateNavbar(targetPage);
+            
+            // Update arrow visibility
+            updateArrowVisibility(targetPage);
+            
+            // Reset animations for the new page
+            setTimeout(() => {
+                initializeAnimations();
+                if (targetPage === 'about') {
+                    initializeSkillBars();
+                    initializeLearningProgress();
+                }
+                if (targetPage === 'portfolio') {
+                    initializeFilterSystem();
+                }
+            }, 650);
+        }
+
+        // Update arrow visibility based on current page
+        function updateArrowVisibility(pageId) {
+            console.log('Updating arrow visibility for page:', pageId);
+            const arrows = document.querySelectorAll('.nav-arrow');
+            console.log('Found arrows:', arrows.length);
+            
+            arrows.forEach(arrow => {
+                arrow.classList.remove('visible');
+                console.log('Removed visible class from arrow');
+            });
+            
+            // Show appropriate arrows for each page
+            if (pageId === 'home') {
+                const rightArrow = document.querySelector('.nav-arrow.right');
+                if (rightArrow) {
+                    rightArrow.classList.add('visible');
+                    console.log('Added visible class to right arrow');
+                }
+            } else if (pageId === 'about') {
+                document.querySelectorAll('.nav-arrow').forEach(arrow => arrow.classList.add('visible'));
+                console.log('Added visible class to all arrows on about page');
+            } else if (pageId === 'portfolio') {
+                const leftArrow = document.querySelector('.nav-arrow.left');
+                console.log('Looking for left arrow on portfolio page');
+                if (leftArrow) {
+                    leftArrow.classList.add('visible');
+                    console.log('Added visible class to left arrow on portfolio page');
+                } else {
+                    console.log('Left arrow not found on portfolio page');
+                }
+            }
+        }
+
+        // Update navbar to reflect current page
+        function updateNavbar(pageId) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Remove active class from all nav links
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Add active class to the corresponding nav link
+            const targetLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (targetLink) {
+                targetLink.classList.add('active');
+            }
         }
 
         // Initialize fade-in animations
@@ -1428,19 +1540,64 @@
 
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
             initializeAnimations();
             setupScrollAnimations();
+            initializeFilterSystem();
             
-            // Add hover effect to project sections
-            document.querySelectorAll('.project-section').forEach(section => {
-                section.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
+            // Check current page and update arrow visibility
+            const activePage = document.querySelector('.page.active');
+            if (activePage) {
+                const pageId = activePage.id;
+                console.log('Current active page:', pageId);
+                updateArrowVisibility(pageId);
+            }
+            
+            // Add hover effect to project cards
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
                 });
-                section.addEventListener('mouseleave', function() {
+                card.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0)';
                 });
             });
         });
+
+        // Filter System
+        function initializeFilterSystem() {
+            const filterButtons = document.querySelectorAll('.filter-button');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            console.log('Filter system initialized');
+            console.log('Found filter buttons:', filterButtons.length);
+            console.log('Found project cards:', projectCards.length);
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterValue = this.getAttribute('data-filter');
+                    console.log('Filter clicked:', filterValue);
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter projects
+                    projectCards.forEach(card => {
+                        const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.trim());
+                        console.log('Card tags:', tags);
+                        
+                        if (filterValue === 'all' || tags.includes(filterValue)) {
+                            card.classList.remove('hidden');
+                            card.style.display = 'block';
+                        } else {
+                            card.classList.add('hidden');
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
 
         // Smooth scrolling for better UX
         document.documentElement.style.scrollBehavior = 'smooth';
@@ -1448,88 +1605,57 @@
         // Video modal functionality
         const projectData = {
             'alien-game': {
-                title: 'Global Defense Initiative Demo',
-                icon: '👽',
-                heading: 'Global Defense Initiative',
-                description: 'Watch the gameplay trailer for this strategy game'
+                title: 'Electron Alien Defense Game Demo',
+                videoSrc: 'demos/alien.mp4'
             },
-            'ai-chat': {
-                title: 'AI Chat Assistant Demo',
-                icon: '🤖',
-                heading: 'AI Chat Assistant',
-                description: 'See the AI responding to natural language queries'
+            'byte-batch': {
+                title: 'ByteBatch Demo',
+                videoSrc: 'demos/byte.mp4'
             },
-            'dashboard': {
-                title: 'Analytics Dashboard Demo',
-                icon: '📊',
-                heading: 'Analytics Dashboard',
-                description: 'Explore interactive data visualizations and reports'
+            'bananote': {
+                title: 'Bananote Demo',
+                videoSrc: 'demos/bananote.mp4'
             },
-            'mobile-game': {
-                title: 'Mobile Game Demo',
-                icon: '📱',
-                heading: 'Mobile Game',
-                description: 'Experience the gameplay and 3D graphics'
+            'snake-game': {
+                title: 'Snake Unity Game Demo',
+                videoSrc: 'demos/snake.mp4'
+            },
+            'rat-game': {
+                title: 'Rat Game Demo',
+                videoSrc: 'demos/rat.mp4'
             }
         };
 
         function openVideoModal(projectId) {
             const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
             const project = projectData[projectId];
             
-            // Update modal content
-            document.getElementById('videoTitle').textContent = project.title;
-            document.getElementById('videoIcon').textContent = project.icon;
-            document.getElementById('videoHeading').textContent = project.heading;
-            document.getElementById('videoDescription').textContent = project.description;
-            
-            // Show modal
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            if (project) {
+                // Update modal content
+                document.getElementById('videoTitle').textContent = project.title;
+                modalVideo.src = project.videoSrc;
+                
+                // Show modal
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Play the video
+                modalVideo.play();
+            }
         }
 
         function closeVideoModal() {
             const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            
+            // Hide modal
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
             
-            // Reset video content
-            const videoContent = document.getElementById('videoContent');
-            videoContent.innerHTML = `
-                <div class="shimmer"></div>
-                <div class="video-placeholder">
-                    <div class="icon" id="videoIcon">🎬</div>
-                    <h3 id="videoHeading">Demo Video</h3>
-                    <p id="videoDescription">Click play to watch the demonstration</p>
-                    <button class="play-button" onclick="playDemo()">
-                        <span>▶</span> Play Demo
-                    </button>
-                </div>
-            `;
-        }
-
-        function playDemo() {
-            const videoContent = document.getElementById('videoContent');
-            videoContent.innerHTML = `
-                <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column;">
-                    <div class="loading-spinner"></div>
-                    <p style="margin-top: 20px; color: #666;">Loading video...</p>
-                </div>
-            `;
-            
-            // Simulate loading delay
-            setTimeout(() => {
-                videoContent.innerHTML = `
-                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column; color: #666;">
-                        <div style="font-size: 3rem; margin-bottom: 16px;">🎬</div>
-                        <h3 style="margin-bottom: 8px; color: #333;">Demo Video Playing...</h3>
-                        <p style="margin-bottom: 20px;">This is where your actual video would be embedded</p>
-                        <div style="background: #333; color: #fff; padding: 8px 16px; border-radius: 20px; font-size: 12px;">
-                            ⏸️ Video Player Placeholder
-                        </div>
-                    </div>
-                `;
-            }, 1500);
+            // Pause and reset video
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
         }
 
         // Close modal when clicking outside
@@ -1588,45 +1714,7 @@
             });
         }
 
-        function showFullscreenVideo(element) {
-            const video = element.querySelector('video');
-            const fullscreenOverlay = document.getElementById('fullscreenOverlay');
-            const fullscreenVideo = document.getElementById('fullscreenVideo');
-            
-            // Set the video source
-            fullscreenVideo.src = video.src;
-            
-            // Show the overlay
-            fullscreenOverlay.classList.add('active');
-            
-            // Play the video
-            fullscreenVideo.play();
-            
-            // Prevent body scrolling
-            document.body.style.overflow = 'hidden';
-        }
 
-        function closeFullscreenVideo() {
-            const fullscreenOverlay = document.getElementById('fullscreenOverlay');
-            const fullscreenVideo = document.getElementById('fullscreenVideo');
-            
-            // Hide the overlay
-            fullscreenOverlay.classList.remove('active');
-            
-            // Pause and reset the video
-            fullscreenVideo.pause();
-            fullscreenVideo.currentTime = 0;
-            
-            // Restore body scrolling
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close on escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeFullscreenVideo();
-            }
-        });
     </script>
 </body>
 </html>
