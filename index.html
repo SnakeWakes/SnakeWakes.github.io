@@ -1,1720 +1,563 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corey Nicholas - Developer</title>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'YOUR-GA-ID');
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #121212;
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-
-        /* Compact centered navigation */
-        nav {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(30, 30, 30, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 8px 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 8px;
-        }
-
-        nav a {
-            color: #b0b0b0;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            padding: 8px 16px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            display: block;
-        }
-
-        nav a:hover,
-        nav a.active {
-            background: #2d2d2d;
-            color: #fff;
-        }
-
-        /* Page sections */
-        .page {
-            min-height: 100vh;
-            display: none;
-            padding: 100px 20px 60px;
-        }
-
-        .page.active {
-            display: block;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        /* Home page */
-        .home {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: calc(100vh - 160px);
-        }
-
-        .intro {
-            text-align: center;
-            max-width: 600px;
-        }
-
-        .intro h1 {
-            font-size: 3.5rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 16px;
-            letter-spacing: -0.02em;
-        }
-
-        .intro .subtitle {
-            font-size: 1.2rem;
-            color: #b0b0b0;
-            margin-bottom: 32px;
-            font-weight: 400;
-        }
-
-        .intro .description {
-            font-size: 1rem;
-            color: #808080;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* Portfolio page */
-        .portfolio-header {
-            text-align: center;
-            margin-bottom: 80px;
-            padding: 0 20px;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .portfolio-header h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 16px;
-        }
-
-        .portfolio-header p {
-            font-size: 1.1rem;
-            color: #b0b0b0;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .projects-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        /* Filter System */
-        .filter-container {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 0 20px;
-        }
-
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .filter-button {
-            background: #2d2d2d;
-            color: #b0b0b0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .filter-button:hover {
-            background: #404040;
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .filter-button.active {
-            background: #fff;
-            color: #121212;
-            border-color: #fff;
-        }
-
-        .project-card {
-            transition: all 0.3s ease, opacity 0.3s ease;
-        }
-
-        .project-card.hidden {
-            opacity: 0;
-            transform: scale(0.8);
-            pointer-events: none;
-            display: none !important;
-        }
-
-        .project-card {
-            background: #1a1a1a;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .project-video-container {
-            position: relative;
-            height: 200px;
-            background: #1a1a1a;
-            overflow: hidden;
-        }
-
-        .project-video-preview {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: relative;
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .video-overlay {
-            opacity: 1;
-        }
-
-        .play-button {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .play-button:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 24px;
-        }
-
-        .project-content h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-        }
-
-        .project-content p {
-            color: #b0b0b0;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            margin-bottom: 16px;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 16px;
-        }
-
-        .tag {
-            background: #2d2d2d;
-            color: #b0b0b0;
-            padding: 4px 10px;
-            border-radius: 16px;
-            font-size: 11px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .tag:hover {
-            background: #404040;
-            color: #fff;
-            transform: translateY(-1px);
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            nav {
-                top: 15px;
-                padding: 6px 12px;
-            }
-
-            nav a {
-                padding: 6px 12px;
-                font-size: 13px;
-            }
-
-            .intro h1 {
-                font-size: 2.5rem;
-            }
-
-            .intro .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .filter-buttons {
-                gap: 8px;
-            }
-
-            .filter-button {
-                padding: 6px 12px;
-                font-size: 13px;
-            }
-
-            .project-video-container {
-                height: 180px;
-            }
-
-            .project-content h3 {
-                font-size: 1.3rem;
-            }
-
-            .nav-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .nav-arrow.left {
-                left: 10px;
-            }
-
-            .nav-arrow.right {
-                right: 10px;
-            }
-
-            .portfolio-header h1 {
-                font-size: 2rem;
-            }
-
-            .scroll-top {
-                bottom: 15px;
-                right: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .intro h1 {
-                font-size: 2rem;
-            }
-
-            nav ul {
-                gap: 4px;
-            }
-
-            nav a {
-                padding: 6px 10px;
-                font-size: 12px;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-        }
-
-        /* Subtle animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #404040;
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #505050;
-        }
-
-        /* Video Modal */
-        .video-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 2000;
-            backdrop-filter: blur(10px);
-        }
-
-        .video-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .video-container {
-            max-width: 90vw;
-            max-height: 90vh;
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .video-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .video-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .close-button {
-            background: #f5f5f5;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 18px;
-            color: #666;
-        }
-
-        .close-button:hover {
-            background: #e5e5e5;
-            color: #333;
-        }
-
-        .video-content {
-            width: 1200px;
-            height: 700px;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .modal-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @media (max-width: 768px) {
-            .video-container {
-                max-width: 98vw;
-                max-height: 98vh;
-            }
-            
-            .video-content {
-                width: 100%;
-                height: 500px;
-            }
-            
-            .video-placeholder .icon {
-                font-size: 3rem;
-            }
-            
-            .video-placeholder h3 {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Scroll to top button */
-        .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #2d2d2d;
-            color: #fff;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            border: none;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .scroll-top.visible {
-            opacity: 1;
-        }
-
-        .scroll-top:hover {
-            transform: translateY(-3px);
-            background: #404040;
-        }
-
-        /* Navigation Arrows */
-        .nav-arrow {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(45, 45, 45, 0.9);
-            color: #fff;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            font-size: 1.2rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-arrow.visible {
-            opacity: 1 !important;
-        }
-
-        /* Make portfolio page left arrow always visible */
-        #portfolio .nav-arrow.left {
-            opacity: 1 !important;
-        }
-
-        .nav-arrow:hover {
-            background: rgba(64, 64, 64, 0.9);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .nav-arrow.left {
-            left: 20px;
-        }
-
-        .nav-arrow.right {
-            right: 20px;
-        }
-
-        /* Page transition animations */
-        .page {
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .page.slide-left {
-            transform: translateX(-100%);
-        }
-
-        .page.slide-right {
-            transform: translateX(100%);
-        }
-
-        /* Loading animation for video modal */
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #333;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* About Page Styles */
-        .about-section {
-            margin-bottom: 80px;
-            padding: 0 20px;
-        }
-
-        .about-section h1, .about-section h2 {
-            color: #fff;
-        }
-
-        .about-section h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .about-section h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .bio-content {
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        .bio-text p {
-            margin-bottom: 20px;
-            color: #b0b0b0;
-            font-size: 1.1rem;
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: flex;
-            flex-direction: row;
-            gap: 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-            justify-content: space-between;
-        }
-
-        .skill-category {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .skill-category h3 {
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #2d2d2d;
-            text-align: center;
-        }
-
-        .skill-items {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .skill-item {
-            background: #1a1a1a;
-            padding: 12px 16px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            text-align: center;
-            flex: 0 1 auto;
-            min-width: 100px;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .skill-name {
-            font-size: 1rem;
-            color: #b0b0b0;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 768px) {
-            .skills-grid {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .skill-items {
-                justify-content: flex-start;
-            }
-        }
-
-        /* Timeline */
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            padding: 20px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: #2d2d2d;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            width: 50%;
-            padding-right: 40px;
-        }
-
-        .timeline-item:nth-child(even) {
-            margin-left: 50%;
-            padding-right: 0;
-            padding-left: 40px;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            right: -6px;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            background: #404040;
-            border-radius: 50%;
-        }
-
-        .timeline-item:nth-child(even) .timeline-dot {
-            right: auto;
-            left: -6px;
-        }
-
-        .timeline-content {
-            background: #1a1a1a;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .timeline-content h3 {
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 5px;
-        }
-
-        .timeline-date {
-            color: #808080;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        .timeline-content p {
-            color: #b0b0b0;
-            line-height: 1.6;
-        }
-
-        /* Interests Grid */
-        .interests-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .interest-item {
-            text-align: center;
-            padding: 30px;
-            background: #1a1a1a;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .interest-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .interest-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .interest-item h3 {
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .interest-item p {
-            color: #b0b0b0;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 50px;
-                padding-right: 0;
-            }
-
-            .timeline-item:nth-child(even) {
-                margin-left: 0;
-                padding-left: 50px;
-            }
-
-            .timeline-dot {
-                left: 14px;
-                right: auto;
-            }
-
-            .timeline-item:nth-child(even) .timeline-dot {
-                left: 14px;
-            }
-
-            .about-section h1 {
-                font-size: 2rem;
-            }
-
-            .about-section h2 {
-                font-size: 1.8rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .interests-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .interests-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-section {
-                padding: 0 15px;
-            }
-        }
-
-        /* Learning Section Styles */
-        .learning-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .learning-item {
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 25px;
-            display: flex;
-            gap: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .learning-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .learning-icon {
-            font-size: 2rem;
-            min-width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f8f8f8;
-            border-radius: 12px;
-        }
-
-        .learning-content {
-            flex: 1;
-        }
-
-        .learning-content h3 {
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-
-        .learning-content p {
-            color: #b0b0b0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .learning-progress {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .progress-bar {
-            flex: 1;
-            height: 6px;
-            background: #2d2d2d;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress {
-            height: 100%;
-            background: #404040;
-            border-radius: 3px;
-            transition: width 1s ease-in-out;
-        }
-
-        .progress-text {
-            font-size: 0.9rem;
-            color: #808080;
-            min-width: 40px;
-        }
-
-        @media (max-width: 768px) {
-            .learning-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .learning-item {
-                padding: 20px;
-            }
-        }
-
-
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corey Nicholas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      background: #111;
+      color: #e0e0e0;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 24px;
+    }
+
+    /* ── SHELL ── */
+    .shell {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ── NAME ── */
+    .name {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: #e8e8e8;
+      text-align: center;
+      animation: fadeUp 0.6s 0.05s ease both;
+    }
+
+    .role {
+      font-size: 0.78rem;
+      color: #444;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 14px;
+      text-align: center;
+      animation: fadeUp 0.6s 0.15s ease both;
+    }
+
+    /* ── NAV PILLS ── */
+    .nav {
+      display: flex;
+      gap: 6px;
+      margin-top: 36px;
+      animation: fadeUp 0.6s 0.25s ease both;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #555;
+      background: none;
+      border: 1px solid #222;
+      border-radius: 2px;
+      padding: 6px 16px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .nav-btn:hover { color: #aaa; border-color: #333; }
+    .nav-btn.active { color: #e0e0e0; border-color: #555; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: #1e1e1e;
+      margin-top: 36px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    /* ── PANEL ── */
+    .panel-wrap {
+      width: 100%;
+      margin-top: 36px;
+      position: relative;
+      min-height: 160px;
+    }
+
+    .panel {
+      width: 100%;
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      animation: panelIn 0.3s ease both;
+    }
+
+    .panel.active { display: flex; }
+
+    @keyframes panelIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 0.88rem;
+      color: #666;
+      line-height: 1.8;
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .about-text p + p { margin-top: 14px; }
+
+    .skills-block { margin-top: 32px; width: 100%; }
+
+    .skill-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 12px;
+      padding: 13px 0;
+      border-top: 1px solid #1c1c1c;
+      align-items: baseline;
+    }
+
+    .skill-row:last-child { border-bottom: 1px solid #1c1c1c; }
+
+    .skill-cat {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #333;
+    }
+
+    .skill-val {
+      font-size: 0.78rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-entry {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 16px;
+      padding: 20px 0;
+      border-top: 1px solid #1c1c1c;
+      align-items: start;
+    }
+
+    .exp-entry:last-child { border-bottom: 1px solid #1c1c1c; }
+
+    .exp-date { font-size: 0.68rem; color: #333; padding-top: 2px; }
+
+    .exp-role { font-size: 0.83rem; font-weight: 400; color: #ccc; margin-bottom: 2px; }
+    .exp-org  { font-size: 0.73rem; color: #444; margin-bottom: 8px; }
+    .exp-desc { font-size: 0.75rem; color: #555; line-height: 1.65; }
+
+    /* ── WORK ── */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 24px;
+      justify-content: center;
+    }
+
+    .fbtn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border: 1px solid #1e1e1e;
+      border-radius: 2px;
+      background: none;
+      color: #444;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .fbtn:hover { border-color: #333; color: #888; }
+    .fbtn.active { border-color: #444; color: #ccc; }
+
+    .proj-list { display: flex; flex-direction: column; width: 100%; gap: 1px; background: #1c1c1c; border: 1px solid #1c1c1c; }
+
+    .proj-card {
+      background: #111;
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .proj-card:hover { background: #161616; }
+    .proj-card.hidden { display: none; }
+
+    .proj-thumb {
+      width: 120px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      background: #161616;
+    }
+
+    .proj-thumb video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0.7;
+      transition: opacity 0.2s, transform 0.4s;
+    }
+
+    .proj-card:hover .proj-thumb video { opacity: 1; transform: scale(1.05); }
+
+    .proj-emoji-thumb {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 1.8rem;
+      opacity: 0.35;
+    }
+
+    .proj-info { padding: 16px 20px; flex: 1; }
+
+    .proj-title { font-size: 0.82rem; font-weight: 400; color: #ccc; margin-bottom: 5px; }
+    .proj-desc  { font-size: 0.73rem; color: #555; line-height: 1.6; margin-bottom: 10px; }
+    .proj-tags  { display: flex; flex-wrap: wrap; gap: 4px; }
+
+    .proj-tag {
+      font-size: 0.58rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border: 1px solid #1e1e1e;
+      color: #333;
+      border-radius: 2px;
+    }
+
+    /* ── MODAL ── */
+    .modal-bg {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .modal-bg.open { display: flex; animation: mfade 0.2s ease; }
+
+    @keyframes mfade { from { opacity: 0; } to { opacity: 1; } }
+
+    .modal-box {
+      background: #161616;
+      border: 1px solid #222;
+      width: min(960px, 92vw);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .modal-top {
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .modal-title { font-size: 0.75rem; color: #555; }
+
+    .modal-x {
+      background: none;
+      border: 1px solid #222;
+      border-radius: 2px;
+      width: 26px; height: 26px;
+      cursor: pointer;
+      color: #555;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .modal-x:hover { border-color: #444; color: #ccc; }
+
+    .modal-vid { background: #000; aspect-ratio: 16/9; position: relative; }
+    .modal-vid video { width: 100%; height: 100%; display: block; }
+    .modal-vid-fallback { display: none; position: absolute; inset: 0; margin: 0; padding: 24px; color: #555; font-size: 0.8rem; text-align: center; align-items: center; justify-content: center; }
+    .modal-vid-fallback.visible { display: flex; }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin-top: 48px;
+      font-size: 0.65rem;
+      color: #2a2a2a;
+      letter-spacing: 0.06em;
+      text-align: center;
+      animation: fadeUp 0.6s 0.35s ease both;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 500px) {
+      .skill-row  { grid-template-columns: 1fr; gap: 4px; }
+      .exp-entry  { grid-template-columns: 1fr; gap: 4px; }
+      .proj-thumb { width: 80px; }
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background: #222; }
+  </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#" onclick="showPage('home')" class="nav-link active">Home</a></li>
-            <li><a href="#" onclick="showPage('about')" class="nav-link">About</a></li>
-            <li><a href="#" onclick="showPage('portfolio')" class="nav-link">Portfolio</a></li>
-        </ul>
+
+  <div class="shell">
+
+    <h1 class="name">Corey Nicholas</h1>
+    <p class="role">Full Stack Developer &amp; IT Specialist · Wales, UK</p>
+
+    <nav class="nav">
+      <button class="nav-btn active" data-panel="about">About</button>
+      <button class="nav-btn" data-panel="experience">Experience</button>
+      <button class="nav-btn" data-panel="work">Work</button>
     </nav>
 
-    <!-- Home Page -->
-    <div class="page active" id="home">
-        <div class="container">
-        <div class="home">
-                <div class="intro fade-in">
-                    <h1>Corey Nicholas</h1>
-                    <p class="subtitle">Bsc. Computer Science<br>Full Stack Developer & IT Specialist</p>
-                    <p class="description">Software, Websites, Video Games and IT Management, View my Portfolio for more information</p>
-                </div>
-            </div>
+    <div class="divider"></div>
+
+    <div class="panel-wrap">
+
+      <!-- ABOUT -->
+      <div class="panel active" id="panel-about">
+        <div class="about-text">
+          <p>Software developer with a BSc. in Computer Science from Swansea University, focused on AI and chatbot personality replication. Currently at VIP-System Limited building modern full-stack systems.</p>
+          <p>I work across web platforms, desktop apps, and games — and I'm always picking up something new.</p>
         </div>
-        <button class="nav-arrow right visible" onclick="navigateWithAnimation('about', 'right')">›</button>
+        <div class="skills-block">
+          <div class="skill-row">
+            <span class="skill-cat">Languages</span>
+            <span class="skill-val">C#, Java, Python, JavaScript, TypeScript, PHP, Lua, Perl, Haskell, Prolog, GDScript, SQL, MATLAB</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">Frameworks</span>
+            <span class="skill-val">ReactJS, Node.js, Flask, Electron, jQuery, Unity, Godot, Android, JUnit, Maven, Linux</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">Spoken</span>
+            <span class="skill-val">English (Native), Welsh (Native), Mandarin (HSK2)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="panel" id="panel-experience">
+        <div class="exp-entry">
+          <span class="exp-date">2014 – 2019</span>
+          <div>
+            <p class="exp-role">Freelance Developer</p>
+            <p class="exp-org">Self-employed</p>
+            <p class="exp-desc">Built and enhanced websites and codebases across gaming communities and independent client projects.</p>
+          </div>
+        </div>
+        <div class="exp-entry">
+          <span class="exp-date">2019 – 2023</span>
+          <div>
+            <p class="exp-role">BSc. Computer Science</p>
+            <p class="exp-org">Swansea University</p>
+            <p class="exp-desc">Focused on AI and machine learning. Dissertation: an AI chatbot replicating a person's personality from their online presence.</p>
+          </div>
+        </div>
+        <div class="exp-entry">
+          <span class="exp-date">2023 – Present</span>
+          <div>
+            <p class="exp-role">Full Stack Developer</p>
+            <p class="exp-org">VIP-System Limited</p>
+            <p class="exp-desc">Overhauled a legacy PHP5 system into a modern Node.js, React, and PHP stack. Delivered security tooling and predictive dashboards.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORK -->
+      <div class="panel" id="panel-work">
+        <div class="filter-row">
+          <button class="fbtn active" data-filter="all">All</button>
+          <button class="fbtn" data-filter="Electron">Electron</button>
+          <button class="fbtn" data-filter="React">React</button>
+          <button class="fbtn" data-filter="Node.js">Node.js</button>
+          <button class="fbtn" data-filter="Games">Games</button>
+          <button class="fbtn" data-filter="C#">C#</button>
+          <button class="fbtn" data-filter="Java">Java</button>
+        </div>
+        <div class="proj-list">
+
+          <div class="proj-card" data-tags="Electron,React,Node.js,Games" onclick="openModal('alien')">
+            <div class="proj-thumb">
+              <video src="demos/alien.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+            <div class="proj-info">
+              <p class="proj-title">Alien Defense Game</p>
+              <p class="proj-desc">Electron strategy game — lead a global coalition against an alien invasion. Resource management, diplomacy, tactical combat.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">Electron</span><span class="proj-tag">React</span><span class="proj-tag">Node.js</span><span class="proj-tag">Games</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proj-card" data-tags="Node.js,React" onclick="openModal('byte')">
+            <div class="proj-thumb">
+              <video src="demos/byte.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+            <div class="proj-info">
+              <p class="proj-title">ByteBatch</p>
+              <p class="proj-desc">Developer-focused forum and marketplace with real-time features.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">Node.js</span><span class="proj-tag">React</span><span class="proj-tag">MySQL</span><span class="proj-tag">WebSocket</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proj-card" data-tags="Electron,React" onclick="openModal('bananote')">
+            <div class="proj-thumb">
+              <video src="demos/bananote.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+            <div class="proj-info">
+              <p class="proj-title">Bananote</p>
+              <p class="proj-desc">Extensible text editor — syntax highlighting, file management, plugin support.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">Electron</span><span class="proj-tag">React</span><span class="proj-tag">TypeScript</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proj-card" data-tags="React,Node.js" onclick="openModal('stackwyn')">
+            <div class="proj-thumb">
+              <div class="proj-emoji-thumb">⚡</div>
+            </div>
+            <div class="proj-info">
+              <p class="proj-title">Stackwyn</p>
+              <p class="proj-desc">Fullstack development tool with real database control and UI design.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">React</span><span class="proj-tag">Node.js</span><span class="proj-tag">Database</span><span class="proj-tag">UI</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /panel-wrap -->
+
+    <p class="footer">Wales, UK · BSc. Computer Science · Swansea University</p>
+
+  </div><!-- /shell -->
+
+  <!-- MODAL -->
+  <div class="modal-bg" id="modal" onclick="bgClick(event)">
+    <div class="modal-box">
+      <div class="modal-top">
+        <span class="modal-title" id="modalTitle">—</span>
+        <button class="modal-x" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-vid">
+        <video id="modalVid" controls loop></video>
+        <p class="modal-vid-fallback" id="modalVidFallback">Video couldn’t be loaded. Try opening the site from the built folder or use a different local server.</p>
+      </div>
     </div>
+  </div>
 
-    <!-- Add About Page after Home Page -->
-    <div class="page" id="about">
-        <button class="nav-arrow left" onclick="navigateWithAnimation('home', 'left')">‹</button>
-        <button class="nav-arrow right" onclick="navigateWithAnimation('portfolio', 'right')">›</button>
-        <div class="container">
-            <!-- Professional Bio Section -->
-            <div class="about-section fade-in">
-                <h1>About Me</h1>
-                <div class="bio-content">
-                    <div class="bio-text">
-                        <p>I'm a dedicated software developer with a Computer Science degree from Swansea University, where I focused on AI and chatbot personality replication. My technical foundation spans multiple languages including Python, Java, C#, and JavaScript, with experience in frameworks like ReactJS, Node.js, and Flask. I've applied these skills in both academic and professional settings.</p>
-                        <p>Professionally, I've worked on system modernization, security software, and predictive tools. Earlier works include freelance work in gaming communities to my current role at VIP-System Limited, I've led projects that enhance efficiency and security. I also pursue solo projects like ByteBatch, Bananote, Electron and Godot based games, I'm always up to date on new language changes.</p>
-                    </div>
-                </div>
-            </div>
+  <script>
+    // Panel switching
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const panels  = document.querySelectorAll('.panel');
 
-            <!-- Skills Matrix Section -->
-            <div class="about-section fade-in">
-                <h2>Skills & Expertise</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Programming Languages</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">
-                                <span class="skill-name">C#</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Java</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Python</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">MATLAB</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">JavaScript</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Lua</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">PHP</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Perl</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Haskell</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Prolog</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">GDScript</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">SQL</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">PEP9</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">TypeScript</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Technologies & Libraries</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">
-                                <span class="skill-name">ReactJS</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">NodeJS</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Flask</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">jQuery</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Android</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">JUnit</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Maven</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Godot</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Unity</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">XAMPP</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Electron</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Linux</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Other Languages</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">
-                                <span class="skill-name">Native English</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">Native Welsh</span>
-                            </div>
-                            <div class="skill-item">
-                                <span class="skill-name">HSK2 Mandarin</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    navBtns.forEach(btn => btn.addEventListener('click', () => {
+      navBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.dataset.panel;
+      panels.forEach(p => {
+        p.classList.remove('active');
+        p.style.animation = 'none';
+      });
+      const next = document.getElementById('panel-' + target);
+      next.style.animation = 'none';
+      requestAnimationFrame(() => {
+        next.style.animation = '';
+        next.classList.add('active');
+      });
+    }));
 
-            <!-- Timeline Section -->
-            <div class="about-section fade-in">
-                <h2>Experience & Education</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>Freelance Developer</h3>
-                            <p class="timeline-date">2014 - 2019</p>
-                            <p>Created, modified and enhanced existing code bases and websites.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>BSc. Computer Science</h3>
-                            <p class="timeline-date">Swansea University (2019 - 2023)</p>
-                            <p>Developed and showcased an AI Chatbot that emulates a human based off their online data and presence.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>VIP-System Limited</h3>
-                            <p class="timeline-date">2023 - Current</p>
-                            <p>Full Stack Developer - Overhauled an outdated PHP5 based system for Node.js, React, JQuery and PHP.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    // Work filter
+    document.querySelectorAll('.fbtn').forEach(btn => btn.addEventListener('click', () => {
+      document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      document.querySelectorAll('.proj-card').forEach(c => {
+        c.classList.toggle('hidden', f !== 'all' && !c.dataset.tags.split(',').includes(f));
+      });
+    }));
 
-            <!-- What I'm Learning Now Section -->
-            <div class="about-section fade-in">
-                <h2>What I'm Learning Now</h2>
-                <div class="learning-grid">
-                    <div class="learning-item">
-                        <div class="learning-icon">⚡</div>
-                        <div class="learning-content">
-                            <h3>C++</h3>
-                            <p>Mastering modern C++ features and best practices for high-performance applications</p>
-                        </div>
-                    </div>
-                    <div class="learning-item">
-                        <div class="learning-icon">🔧</div>
-                        <div class="learning-content">
-                            <h3>Software Optimisation</h3>
-                            <p>Learning advanced techniques for improving application performance and resource efficiency</p>
-                        </div>
-                    </div>
-                    <div class="learning-item">
-                        <div class="learning-icon">🧪</div>
-                        <div class="learning-content">
-                            <h3>OOP Advanced Testing</h3>
-                            <p>Exploring advanced testing methodologies and patterns for object-oriented programming</p>
-                        </div>
-                    </div>
-                    <div class="learning-item">
-                        <div class="learning-icon">🦀</div>
-                        <div class="learning-content">
-                            <h3>Rust</h3>
-                            <p>Studying Rust's memory safety features and concurrent programming capabilities</p>
-                        </div>
-                    </div>
-                    <div class="learning-item">
-                        <div class="learning-icon">💾</div>
-                        <div class="learning-content">
-                            <h3>1980 Assembly</h3>
-                            <p>Understanding low-level programming and computer architecture through historical assembly language</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    // Modal
+    const vids = {
+      alien:    ['Alien Defense Game', 'demos/alien.mp4'],
+      byte:     ['ByteBatch',          'demos/byte.mp4'],
+      bananote: ['Bananote',           'demos/bananote.mp4'],
+      stackwyn: ['Stackwyn',           'demos/stackwyn.mp4'],
+    };
 
-    <!-- Video Modal -->
-    <div class="video-modal" id="videoModal">
-        <div class="video-container">
-            <div class="video-header">
-                <div class="video-title" id="videoTitle">Project Demo</div>
-                <button class="close-button" onclick="closeVideoModal()">×</button>
-            </div>
-            <div class="video-content" id="videoContent">
-                <video class="modal-video" id="modalVideo" controls loop>
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-    </div>
+    function openModal(id) {
+      const [name, src] = vids[id];
+      document.getElementById('modalTitle').textContent = name;
+      const v = document.getElementById('modalVid');
+      const fallback = document.getElementById('modalVidFallback');
+      fallback.classList.remove('visible');
+      v.style.display = 'block';
+      if (src) {
+        v.onerror = () => { v.style.display = 'none'; fallback.classList.add('visible'); };
+        v.src = src;
+        v.play().catch(() => { v.style.display = 'none'; fallback.classList.add('visible'); });
+      } else {
+        v.style.display = 'none';
+        fallback.classList.add('visible');
+      }
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
 
-    <!-- Portfolio Page -->
-    <div class="page" id="portfolio">
-        <button class="nav-arrow left visible" onclick="navigateWithAnimation('about', 'left')">‹</button>
-        <div class="portfolio-header fade-in">
-            <h2>Click on the videos to enlarge them!</h2>
-        </div>
-        <div class="filter-container fade-in">
-            <div class="filter-buttons" id="filterButtons">
-                <button class="filter-button active" data-filter="all">All Projects</button>
-                <button class="filter-button" data-filter="Electron">Electron</button>
-                <button class="filter-button" data-filter="React">React</button>
-                <button class="filter-button" data-filter="Node.js">Node.js</button>
-                <button class="filter-button" data-filter="Game Development">Game Development</button>
-                <button class="filter-button" data-filter="MySQL / MongoDB">MySQL / MongoDB</button>
-                <button class="filter-button" data-filter="WebSocket & API">WebSocket & API</button>
-                <button class="filter-button" data-filter="TypeScript">TypeScript</button>
-                <button class="filter-button" data-filter="Plugin System">Plugin System</button>
-                <button class="filter-button" data-filter="C#">C#</button>
-                <button class="filter-button" data-filter="Java">Java</button>
-                <button class="filter-button" data-filter="JavaFX">JavaFX</button>
-            </div>
-        </div>
-        <div class="projects-container">
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <div class="project-video-container">
-                        <video class="project-video-preview" src="demos/alien.mp4" autoplay muted loop playsinline></video>
-                        <div class="video-overlay">
-                            <button class="play-button" onclick="openVideoModal('alien-game')">▶</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Electron Alien Defense Game</h3>
-                        <p>An Electron-based strategy game where players lead a global organization in uniting the world against an impending alien invasion. Features include resource management, diplomatic negotiations, and tactical combat planning.</p>
-                        <div class="project-tags">
-                            <span class="tag">Electron</span>
-                            <span class="tag">React</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">Game Development</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card fade-in">
-                    <div class="project-video-container">
-                        <video class="project-video-preview" src="demos/byte.mp4" autoplay muted loop playsinline></video>
-                        <div class="video-overlay">
-                            <button class="play-button" onclick="openVideoModal('byte-batch')">▶</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>ByteBatch</h3>
-                        <p>An early website project that will act as a forums, marketplace and general hub targeted towards developers, computer enthusiasts and related topics. It is intended to be a light based website and future application.</p>
-                        <div class="project-tags">
-                            <span class="tag">Node.js</span>
-                            <span class="tag">React</span>
-                            <span class="tag">MySQL / MongoDB</span>
-                            <span class="tag">WebSocket & API</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card fade-in">
-                    <div class="project-video-container">
-                        <video class="project-video-preview" src="demos/bananote.mp4" autoplay muted loop playsinline></video>
-                        <div class="video-overlay">
-                            <button class="play-button" onclick="openVideoModal('bananote')">▶</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Bananote</h3>
-                        <p>A modern, extensible text editor built with Electron and React. Features include syntax highlighting, file management, extension support, and IDE-like capabilities. Perfect for developers who want a lightweight but powerful coding environment.</p>
-                        <div class="project-tags">
-                            <span class="tag">Electron</span>
-                            <span class="tag">React</span>
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">Plugin System</span>
-                        </div>
-                    </div>
+    function closeModal() {
+      const v = document.getElementById('modalVid');
+      v.pause(); v.src = ''; v.onerror = null;
+      document.getElementById('modalVidFallback').classList.remove('visible');
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
-                </div>
-                
-                <div class="project-card fade-in">
-                    <div class="project-video-container">
-                        <div class="video-placeholder" style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 3rem;">
-                            🐍
-                        </div>
-                        <div class="video-overlay">
-                            <button class="play-button" onclick="openVideoModal('snake-game')">▶</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Snake Unity Game</h3>
-                        <p>A test game for when I was first learning Unity2D during university, submitted as a project.</p>
-                        <div class="project-tags">
-                            <span class="tag">C#</span>
-                            <span class="tag">Game Development</span>
-                            <span class="tag">Unity</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card fade-in">
-                    <div class="project-video-container">
-                        <div class="video-placeholder" style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 3rem;">
-                            🐀
-                        </div>
-                        <div class="video-overlay">
-                            <button class="play-button" onclick="openVideoModal('rat-game')">▶</button>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Rat Game</h3>
-                        <p>A Java based game, that is influenced by Bomber man, you must avoid the enemy rats and items, while managing to win the levels.</p>
-                        <div class="project-tags">
-                            <span class="tag">Java</span>
-                            <span class="tag">JavaFX</span>
-                            <span class="tag">Game Development</span>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    function bgClick(e) {
+      if (e.target === document.getElementById('modal')) closeModal();
+    }
 
-    <!-- Add scroll to top button -->
-    <button class="scroll-top" onclick="scrollToTop()" title="Scroll to top">↑</button>
-
-
-
-    <script>
-        // Page navigation with smooth transitions
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            // Hide all pages
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update navbar
-            updateNavbar(pageId);
-            
-            // Update arrow visibility
-            updateArrowVisibility(pageId);
-            
-            // Reset animations for the new page
-            setTimeout(() => {
-                initializeAnimations();
-                if (pageId === 'about') {
-                    initializeSkillBars();
-                    initializeLearningProgress();
-                }
-                if (pageId === 'portfolio') {
-                    initializeFilterSystem();
-                }
-            }, 100);
-        }
-
-        // Animated navigation function
-        function navigateWithAnimation(targetPage, direction) {
-            const currentPage = document.querySelector('.page.active');
-            const targetPageElement = document.getElementById(targetPage);
-            
-            if (!currentPage || !targetPageElement) return;
-            
-            // Add slide animation to current page
-            if (direction === 'right') {
-                currentPage.classList.add('slide-left');
-            } else {
-                currentPage.classList.add('slide-right');
-            }
-            
-            // Show target page with opposite animation
-            targetPageElement.classList.add('active');
-            if (direction === 'right') {
-                targetPageElement.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    targetPageElement.style.transform = 'translateX(0)';
-                }, 50);
-            } else {
-                targetPageElement.style.transform = 'translateX(-100%)';
-                setTimeout(() => {
-                    targetPageElement.style.transform = 'translateX(0)';
-                }, 50);
-            }
-            
-            // Remove active class from current page after animation
-            setTimeout(() => {
-                currentPage.classList.remove('active', 'slide-left', 'slide-right');
-                currentPage.style.transform = '';
-                targetPageElement.style.transform = '';
-            }, 600);
-            
-            // Update navbar
-            updateNavbar(targetPage);
-            
-            // Update arrow visibility
-            updateArrowVisibility(targetPage);
-            
-            // Reset animations for the new page
-            setTimeout(() => {
-                initializeAnimations();
-                if (targetPage === 'about') {
-                    initializeSkillBars();
-                    initializeLearningProgress();
-                }
-                if (targetPage === 'portfolio') {
-                    initializeFilterSystem();
-                }
-            }, 650);
-        }
-
-        // Update arrow visibility based on current page
-        function updateArrowVisibility(pageId) {
-            console.log('Updating arrow visibility for page:', pageId);
-            const arrows = document.querySelectorAll('.nav-arrow');
-            console.log('Found arrows:', arrows.length);
-            
-            arrows.forEach(arrow => {
-                arrow.classList.remove('visible');
-                console.log('Removed visible class from arrow');
-            });
-            
-            // Show appropriate arrows for each page
-            if (pageId === 'home') {
-                const rightArrow = document.querySelector('.nav-arrow.right');
-                if (rightArrow) {
-                    rightArrow.classList.add('visible');
-                    console.log('Added visible class to right arrow');
-                }
-            } else if (pageId === 'about') {
-                document.querySelectorAll('.nav-arrow').forEach(arrow => arrow.classList.add('visible'));
-                console.log('Added visible class to all arrows on about page');
-            } else if (pageId === 'portfolio') {
-                const leftArrow = document.querySelector('.nav-arrow.left');
-                console.log('Looking for left arrow on portfolio page');
-                if (leftArrow) {
-                    leftArrow.classList.add('visible');
-                    console.log('Added visible class to left arrow on portfolio page');
-                } else {
-                    console.log('Left arrow not found on portfolio page');
-                }
-            }
-        }
-
-        // Update navbar to reflect current page
-        function updateNavbar(pageId) {
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            // Remove active class from all nav links
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Add active class to the corresponding nav link
-            const targetLink = document.querySelector(`[onclick="showPage('${pageId}')"]`);
-            if (targetLink) {
-                targetLink.classList.add('active');
-            }
-        }
-
-        // Initialize fade-in animations
-        function initializeAnimations() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            fadeElements.forEach((element, index) => {
-                element.classList.remove('visible');
-                setTimeout(() => {
-                    element.classList.add('visible');
-                }, index * 100);
-            });
-        }
-
-        // Intersection Observer for scroll animations
-        function setupScrollAnimations() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        // Add staggered animation for project sections
-                        if (entry.target.classList.contains('project-section')) {
-                            const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 100;
-                            entry.target.style.transitionDelay = `${delay}ms`;
-                        }
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, initializing...');
-            initializeAnimations();
-            setupScrollAnimations();
-            initializeFilterSystem();
-            
-            // Check current page and update arrow visibility
-            const activePage = document.querySelector('.page.active');
-            if (activePage) {
-                const pageId = activePage.id;
-                console.log('Current active page:', pageId);
-                updateArrowVisibility(pageId);
-            }
-            
-            // Add hover effect to project cards
-            document.querySelectorAll('.project-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px)';
-                });
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-        });
-
-        // Filter System
-        function initializeFilterSystem() {
-            const filterButtons = document.querySelectorAll('.filter-button');
-            const projectCards = document.querySelectorAll('.project-card');
-
-            console.log('Filter system initialized');
-            console.log('Found filter buttons:', filterButtons.length);
-            console.log('Found project cards:', projectCards.length);
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const filterValue = this.getAttribute('data-filter');
-                    console.log('Filter clicked:', filterValue);
-                    
-                    // Update active button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Filter projects
-                    projectCards.forEach(card => {
-                        const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.trim());
-                        console.log('Card tags:', tags);
-                        
-                        if (filterValue === 'all' || tags.includes(filterValue)) {
-                            card.classList.remove('hidden');
-                            card.style.display = 'block';
-                        } else {
-                            card.classList.add('hidden');
-                            card.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        }
-
-        // Smooth scrolling for better UX
-        document.documentElement.style.scrollBehavior = 'smooth';
-
-        // Video modal functionality
-        const projectData = {
-            'alien-game': {
-                title: 'Electron Alien Defense Game Demo',
-                videoSrc: 'demos/alien.mp4'
-            },
-            'byte-batch': {
-                title: 'ByteBatch Demo',
-                videoSrc: 'demos/byte.mp4'
-            },
-            'bananote': {
-                title: 'Bananote Demo',
-                videoSrc: 'demos/bananote.mp4'
-            },
-            'snake-game': {
-                title: 'Snake Unity Game Demo',
-                videoSrc: 'demos/snake.mp4'
-            },
-            'rat-game': {
-                title: 'Rat Game Demo',
-                videoSrc: 'demos/rat.mp4'
-            }
-        };
-
-        function openVideoModal(projectId) {
-            const modal = document.getElementById('videoModal');
-            const modalVideo = document.getElementById('modalVideo');
-            const project = projectData[projectId];
-            
-            if (project) {
-                // Update modal content
-                document.getElementById('videoTitle').textContent = project.title;
-                modalVideo.src = project.videoSrc;
-                
-                // Show modal
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Play the video
-                modalVideo.play();
-            }
-        }
-
-        function closeVideoModal() {
-            const modal = document.getElementById('videoModal');
-            const modalVideo = document.getElementById('modalVideo');
-            
-            // Hide modal
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            
-            // Pause and reset video
-            modalVideo.pause();
-            modalVideo.currentTime = 0;
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('videoModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeVideoModal();
-            }
-        });
-
-        // Close modal with ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeVideoModal();
-            }
-        });
-
-        // Scroll to top functionality
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Show/hide scroll to top button
-        window.addEventListener('scroll', function() {
-            const scrollTop = document.querySelector('.scroll-top');
-            if (window.scrollY > 300) {
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
-        });
-
-        // Initialize skill bars animation
-        function initializeSkillBars() {
-            const skillBars = document.querySelectorAll('.skill-level');
-            skillBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 200);
-            });
-        }
-
-        // Initialize learning progress bars
-        function initializeLearningProgress() {
-            const progressBars = document.querySelectorAll('.progress');
-            progressBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 200);
-            });
-        }
-
-
-    </script>
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
 </body>
 </html>
